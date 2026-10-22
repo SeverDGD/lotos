@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Гостевой дом Лотос</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Гостевой дом «Лотос» в деревне Курма на Байкале: проживание у Малого Моря, летние и зимние туры, активный отдых.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+
+<!-- ============ SVG sprites ============ -->
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="lotus" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M32 12c6 7 8 15 8 22s-3 12-8 15c-5-3-8-8-8-15s2-15 8-22z"/><path d="M24 30c-6-3-12-3-17-2 1 9 6 18 18 21"/><path d="M40 30c6-3 12-3 17-2-1 9-6 18-18 21"/><path d="M12 50c6 4 13 5 20 5s14-1 20-5"/></g></symbol>
+  <symbol id="arr" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="arl" viewBox="0 0 24 24"><path d="M20 12H5m6-6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 32 32"><path d="M3 12c4-4 9-4 13 0s9 4 13 0M3 20c4-4 9-4 13 0s9 4 13 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-shower" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 28V9a4 4 0 0 1 8 0"/><path d="M11 12h10"/><path d="M13 16v2M16 16v3M19 16v2M14 22v1M18 22v1"/></g></symbol>
+  <symbol id="i-wifi" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 12a17 17 0 0 1 24 0M8 16a11 11 0 0 1 16 0M12 20a5 5 0 0 1 8 0"/><circle cx="16" cy="25" r="1.4" fill="currentColor"/></g></symbol>
+  <symbol id="i-terrace" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12 16 5l12 7"/><path d="M7 12v15M25 12v15M4 27h24M11 20h10M13 20v7M19 20v7"/></g></symbol>
+</svg>
+
+<!-- ============ Header ============ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <button class="burger" id="openMenu" aria-controls="menu" aria-expanded="false"><i></i><span>Меню</span></button>
+    <a class="logo" href="#top" aria-label="Гостевой дом Лотос — на главную">
+      <svg aria-hidden="true"><use href="#lotus"/></svg>
+      <span><b>ЛОТОС</b><small>гостевой дом · Курма</small></span>
+    </a>
+    <button class="btn" data-book>Забронировать</button>
+  </div>
+</header>
+
+<!-- ============ Overlay menu ============ -->
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Меню сайта">
+  <button class="menu__close" id="closeMenu"><i></i>Закрыть</button>
+  <nav class="menu__nav">
+    <ul>
+      <li><a href="#top" style="transition-delay:.15s"><small>01</small>Главная</a></li>
+      <li><a href="#about" style="transition-delay:.2s"><small>02</small>О доме</a></li>
+      <li><a href="#rooms" style="transition-delay:.25s"><small>03</small>Номера</a></li>
+      <li><a href="#activities" style="transition-delay:.3s"><small>04</small>Туры и отдых</a></li>
+      <li><a href="#nature" style="transition-delay:.35s"><small>05</small>Природа рядом</a></li>
+      <li><a href="#gallery" style="transition-delay:.4s"><small>06</small>Фотографии</a></li>
+      <li><a href="#contacts" style="transition-delay:.45s"><small>07</small>Контакты</a></li>
+    </ul>
+    <div class="menu__meta">
+      <div><strong>+7 (000) 000-00-00</strong>телефон и WhatsApp</div>
+      <div><strong>д. Курма, Ольхонский район</strong>Иркутская область, берег Малого Моря</div>
+    </div>
+  </nav>
+  <div class="menu__pic"><img src="img/baikal-panorama.jpg" alt="Вид на Малое Море"></div>
+</div>
+
+<main id="top">
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="hero__bg"><img src="img/shore.jpg" alt="Галечный берег Байкала у деревни Курма" fetchpriority="high"></div>
+  <div class="hero__coords">Малое Море · Байкал</div>
+  <div class="wrap hero__content">
+    <h1><span class="ln"><span>Гостевой дом</span></span><span class="ln"><span>у самой воды</span></span><span class="ln"><span>Байкала</span></span></h1>
+    <div class="hero__side">
+      <p>Деревня Курма, берег Малого Моря. Уютные номера, летние прогулки на гидроцикле и зимние поездки по льду, всё в одном месте.</p>
+      <button class="btn" data-book>Забронировать <svg><use href="#arr"/></svg></button>
+      <a class="scroll-cue" href="#about"><i></i>Листайте вниз</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ About ============ -->
+<section class="sec" id="about">
+  <div class="wrap manifest">
+    <div data-rv>
+      <svg class="lotus-mark" aria-hidden="true"><use href="#lotus"/></svg>
+    </div>
+    <p class="manifest__big" data-rv>Место, где утро начинается с&nbsp;вида на&nbsp;<em>Малое Море</em>, а&nbsp;вечер заканчивается тишиной степи</p>
+
+    <div class="about">
+      <div class="about__media">
+        <div class="ph ph--para" data-rv-mask><img src="img/houses.jpg" alt="Домики гостевого дома Лотос с верандами" data-parallax="0.08"></div>
+        <div class="ph ph--para" data-rv-mask><img src="img/veranda-view.jpg" alt="Вид на Байкал с веранды" data-parallax="0.12"></div>
+      </div>
+      <div data-rv>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="p-house" id="t-house">О гостевом доме</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-kurma" id="t-kurma">О Курме</button>
+        </div>
+        <div class="panel" role="tabpanel" id="p-house" aria-labelledby="t-house">
+          <p class="lead">«Лотос» — небольшой гостевой дом с отдельными входами и крытыми верандами. Из окон видно Байкал, до берега несколько минут пешком.</p>
+          <p>В каждом номере своя душевая, холодильник, телевизор и Wi‑Fi. Мы помогаем не только с жильём: организуем поездки, прокат техники и туры по Малому Морю в любое время года.</p>
+          <div class="facts">
+            <div><b>2</b><span>сезона туров: лето и зима</span></div>
+            <div><b>5 мин</b><span>пешком до берега</span></div>
+            <div><b>24/7</b><span>на связи с гостями</span></div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-kurma" aria-labelledby="t-kurma" hidden>
+          <p class="lead">Курма — тихая деревня на берегу Малого Моря, пролива между материком и островом Ольхон.</p>
+          <p>Здесь тёплая для Байкала вода в заливах, галечные пляжи, степь и сопки. Летом отсюда удобно ездить на Ольхон и в Тажеранскую степь, зимой выходить на прозрачный лёд.</p>
+          <div class="facts">
+            <div><b>≈ 270</b><span>км от Иркутска</span></div>
+            <div><b>≈ 300</b><span>солнечных дней в году</span></div>
+            <div><b>Ольхон</b><span>остров напротив</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee__track">
+  <span>Байкал</span><span>Малое Море</span><span>деревня Курма</span><span>лёд и степь</span><span>гостевой дом Лотос</span>
+  <span>Байкал</span><span>Малое Море</span><span>деревня Курма</span><span>лёд и степь</span><span>гостевой дом Лотос</span>
+</div></div>
+
+<!-- ============ Rooms ============ -->
+<section class="sec" id="rooms">
+  <div class="wrap sec__head">
+    <div data-rv>
+      <div class="eyebrow">Проживание</div>
+      <h2>Номера</h2>
+    </div>
+    <div class="rail__ctrl" data-rv>
+      <button class="rail__btn" data-prev="roomsRail" aria-label="Предыдущий номер"><svg><use href="#arl"/></svg></button>
+      <span class="rail__count" data-count="roomsRail">01 / 04</span>
+      <button class="rail__btn" data-next="roomsRail" aria-label="Следующий номер"><svg><use href="#arr"/></svg></button>
+    </div>
+  </div>
+  <div class="rail-wrap" data-rv>
+    <div class="rail" id="roomsRail">
+      <article class="room" data-room="double">
+        <div class="ph"><img src="img/room-double.jpg" alt="Двухместный номер с кроватью и обеденным столом" loading="lazy"><span class="ph__tag">Цена уточняется</span></div>
+        <div class="room__top"><h3>Стандарт</h3><span class="room__price">от — ₽ / сутки</span></div>
+        <div class="room__specs"><span class="chip">2 гостя</span><span class="chip">двуспальная кровать</span><span class="chip">душ</span></div>
+        <p>Светлый номер с двуспальной кроватью, столом и выходом на общую веранду.</p>
+        <button class="link-arrow" data-open-room="double">Подробнее <svg width="18" height="18"><use href="#arr"/></svg></button>
+      </article>
+      <article class="room" data-room="family">
+        <div class="ph"><img src="img/room-family.jpg" alt="Семейный номер с кроватью и диваном" loading="lazy"><span class="ph__tag">Цена уточняется</span></div>
+        <div class="room__top"><h3>Семейный</h3><span class="room__price">от — ₽ / сутки</span></div>
+        <div class="room__specs"><span class="chip">до 4 гостей</span><span class="chip">кровать + диван</span><span class="chip">душ</span></div>
+        <p>Двуспальная кровать и раскладной диван, удобно для семьи с детьми.</p>
+        <button class="link-arrow" data-open-room="family">Подробнее <svg width="18" height="18"><use href="#arr"/></svg></button>
+      </article>
+      <article class="room" data-room="kitchen">
+        <div class="ph"><img src="img/room-kitchen.jpg" alt="Номер с кухонным уголком, микроволновкой и чайником" loading="lazy"><span class="ph__tag">Цена уточняется</span></div>
+        <div class="room__top"><h3>С кухней</h3><span class="room__price">от — ₽ / сутки</span></div>
+        <div class="room__specs"><span class="chip">2–3 гостя</span><span class="chip">кухонный уголок</span><span class="chip">ТВ</span></div>
+        <p>Микроволновка, чайник и посуда, чтобы готовить самим и не зависеть от расписания кафе.</p>
+        <button class="link-arrow" data-open-room="kitchen">Подробнее <svg width="18" height="18"><use href="#arr"/></svg></button>
+      </article>
+      <article class="room" data-room="terrace">
+        <div class="ph"><img src="img/terrace.jpg" alt="Вход в номер с террасой, столом и стульями" loading="lazy"><span class="ph__tag">Цена уточняется</span></div>
+        <div class="room__top"><h3>С террасой</h3><span class="room__price">от — ₽ / сутки</span></div>
+        <div class="room__specs"><span class="chip">2 гостя</span><span class="chip">своя терраса</span><span class="chip">вид на степь</span></div>
+        <p>Отдельный вход и столик на террасе: утренний чай под байкальским солнцем.</p>
+        <button class="link-arrow" data-open-room="terrace">Подробнее <svg width="18" height="18"><use href="#arr"/></svg></button>
+      </article>
+    </div>
+    <div class="wrap"><div class="progress"><i data-progress="roomsRail"></i></div></div>
+  </div>
+
+  <div class="wrap">
+    <div class="comforts" data-rv>
+      <div><svg><use href="#i-shower"/></svg><b>Свой санузел</b><span>Душевая, бойлер, полотенца</span></div>
+      <div><svg><use href="#i-wifi"/></svg><b>Wi‑Fi</b><span>Роутер в каждом номере</span></div>
+      <div><svg><use href="#i-terrace"/></svg><b>Веранды</b><span>Столик и вид на Байкал</span></div>
+      <div><svg><use href="#i-wave"/></svg><b>Берег рядом</b><span>Несколько минут пешком</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Active rest intro (split) ============ -->
+<section class="split">
+  <div class="ph ph--para" data-rv-mask><img src="img/bike.jpg" alt="Велосипед на берегу у гостевого дома" data-parallax="0.1" style="object-position:50% 80%"></div>
+  <div class="split__txt" data-rv>
+    <div class="eyebrow">Активный отдых</div>
+    <h2>Скорость и ветер <span>или покой и тишина</span></h2>
+    <p class="lead">Мы собираем программы под ваш отдых: от часовой прогулки на гидроцикле до целого дня на льду с баней на колёсах. Технику и гидов подбираем сами.</p>
+    <a class="link-arrow" href="#activities">Смотреть программы <svg width="18" height="18"><use href="#arr"/></svg></a>
+  </div>
+</section>
+
+<!-- ============ Activities ============ -->
+<section class="sec sec--dark" id="activities">
+  <div class="wrap sec__head">
+    <div data-rv>
+      <div class="eyebrow">Туры и развлечения</div>
+      <h2>Байкал летом и&nbsp;зимой</h2>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center" data-rv>
+      <div class="season" role="group" aria-label="Сезон">
+        <span class="season__pill" aria-hidden="true"></span>
+        <button aria-pressed="true" data-season="summer">Лето</button>
+        <button aria-pressed="false" data-season="winter">Зима</button>
+      </div>
+      <div class="rail__ctrl">
+        <button class="rail__btn" data-prev="actRail" aria-label="Назад"><svg><use href="#arl"/></svg></button>
+        <button class="rail__btn" data-next="actRail" aria-label="Вперёд"><svg><use href="#arr"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="rail-wrap" data-rv>
+    <div class="rail" id="actRail">
+      <!-- summer -->
+      <article class="act" data-s="summer">
+        <div class="ph"><img src="img/shore.jpg" alt="Байкал у Курмы" loading="lazy" style="object-position:70% 50%"></div>
+        <div class="act__meta"><span>Лето</span><span>от 30 мин</span></div>
+        <h3>Гидроцикл</h3>
+        <p>Прогулка по Малому Морю вдоль скалистых мысов и островков.</p>
+      </article>
+      <article class="act" data-s="summer">
+        <div class="ph"><img src="img/houses.jpg" alt="Квадроциклы у гостевого дома" loading="lazy" style="object-position:22% 50%"></div>
+        <div class="act__meta"><span>Лето</span><span>от 1 часа</span></div>
+        <h3>Квадроциклы</h3>
+        <p>Маршруты по степи и сопкам к смотровым точкам над Байкалом.</p>
+      </article>
+      <article class="act" data-s="summer">
+        <div class="ph"><img src="img/bike.jpg" alt="Горный велосипед" loading="lazy"></div>
+        <div class="act__meta"><span>Лето</span><span>прокат</span></div>
+        <h3>Велосипеды</h3>
+        <p>Прокат горных велосипедов: по берегу, в соседние заливы, к ущелью.</p>
+      </article>
+      <article class="act" data-s="summer">
+        <div class="ph"><img src="img/baikal-panorama.jpg" alt="Панорама Малого Моря" loading="lazy" style="object-position:30% 50%"></div>
+        <div class="act__meta"><span>Лето</span><span>весь день</span></div>
+        <h3>Поездка на Ольхон</h3>
+        <p>Хужир, мыс Бурхан и северная часть острова с гидом.</p>
+      </article>
+      <!-- winter -->
+      <article class="act is-out" data-s="winter">
+        <div class="ph ph--ice"><canvas data-ice></canvas><div class="ph__label"><span>фото добавим</span><b>Баня</b></div></div>
+        <div class="act__meta"><span>Зима</span><span>2–3 часа</span></div>
+        <h3>Баня на колёсах</h3>
+        <p>Парная прямо на льду Байкала, а после — прорубь или снег.</p>
+      </article>
+      <article class="act is-out" data-s="winter">
+        <div class="ph ph--ice"><canvas data-ice></canvas><div class="ph__label"><span>фото добавим</span><b>Багги</b></div></div>
+        <div class="act__meta"><span>Зима</span><span>от 1 часа</span></div>
+        <h3>Багги по льду</h3>
+        <p>Скорость по прозрачному льду Малого Моря с инструктором.</p>
+      </article>
+      <article class="act is-out" data-s="winter">
+        <div class="ph"><img src="img/winter-ice.jpg" alt="Скала в ледяных наплесках на Байкале" loading="lazy" style="object-position:40% 50%"></div>
+        <div class="act__meta"><span>Зима</span><span>весь день</span></div>
+        <h3>Ледяные гроты</h3>
+        <p>Сокуи, наплески и гроты у скал Ольхона и островов Малого Моря.</p>
+      </article>
+      <article class="act is-out" data-s="winter">
+        <div class="ph ph--ice"><canvas data-ice></canvas><div class="ph__label"><span>фото добавим</span><b>Коньки</b></div></div>
+        <div class="act__meta"><span>Зима</span><span>прокат</span></div>
+        <h3>Коньки на Байкале</h3>
+        <p>Километры чистого льда, под которым видно камни на дне.</p>
+      </article>
+    </div>
+    <div class="wrap"><div class="progress"><i data-progress="actRail"></i></div></div>
+  </div>
+</section>
+
+<!-- ============ Nature ============ -->
+<section class="sec" id="nature">
+  <div class="wrap">
+    <div class="sec__head">
+      <div data-rv>
+        <div class="eyebrow">Природа рядом</div>
+        <h2>Почувствуйте силу Малого Моря</h2>
+      </div>
+      <p class="lead" data-rv style="max-width:38ch">Самые красивые места Приольхонья в часе дороги от дома. Расстояния примерные, от Курмы.</p>
+    </div>
+    <div class="places" id="places">
+      <article class="place" data-rv>
+        <div class="ph ph--para"><img src="img/shore.jpg" alt="Курминский залив" loading="lazy" data-parallax="0.06"></div>
+        <div class="place__dist">рядом с домом</div>
+        <h3>Курминский залив</h3>
+        <p>Мелкий залив, где вода летом прогревается сильнее, чем в открытом Байкале.</p>
+      </article>
+      <article class="place" data-rv>
+        <div class="ph ph--steppe"></div>
+        <div class="place__dist">≈ 20 мин на авто</div>
+        <h3>Сарминское ущелье</h3>
+        <p>Скалистое ущелье, откуда дует знаменитый ветер «сарма».</p>
+      </article>
+      <article class="place" data-rv>
+        <div class="ph ph--para"><img src="img/winter-ice.jpg" alt="Скалы Ольхона во льду" loading="lazy" data-parallax="0.06"></div>
+        <div class="place__dist">≈ 1 ч с паромом</div>
+        <h3>Остров Ольхон</h3>
+        <p>Крупнейший остров Байкала: мыс Бурхан, Хобой, песчаные бухты.</p>
+      </article>
+      <article class="place" data-rv>
+        <div class="ph ph--para"><img src="img/baikal-panorama.jpg" alt="Острова Малого Моря" loading="lazy" data-parallax="0.06"></div>
+        <div class="place__dist">≈ по воде</div>
+        <h3>Острова Малого Моря</h3>
+        <p>Огой, Замогой и десятки скалистых островков среди бирюзовой воды.</p>
+      </article>
+      <article class="place is-extra">
+        <div class="ph ph--steppe"></div>
+        <div class="place__dist">≈ 50 мин на авто</div>
+        <h3>Тажеранская степь</h3>
+        <p>Степь с солёными озёрами, каменными останцами и пещерами.</p>
+      </article>
+      <article class="place is-extra">
+        <div class="ph ph--steppe"></div>
+        <div class="place__dist">≈ 1 ч на авто</div>
+        <h3>Долина каменных духов</h3>
+        <p>Причудливые скалы среди степи, одно из самых фотогеничных мест.</p>
+      </article>
+    </div>
+    <div class="more"><button class="btn btn--ghost" id="morePlaces">Больше природы <svg><use href="#arr"/></svg></button></div>
+  </div>
+</section>
+
+<!-- ============ Gallery ============ -->
+<section class="sec" id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec__head">
+      <div data-rv><div class="eyebrow">Фотографии</div><h2>Как здесь</h2></div>
+    </div>
+    <div class="mosaic" data-rv>
+      <button class="ph m1" data-lb="img/baikal-panorama.jpg" aria-label="Открыть фото: Малое Море"><img src="img/baikal-panorama.jpg" alt="" loading="lazy"></button>
+      <button class="ph m2" data-lb="img/room-double.jpg" aria-label="Открыть фото: номер"><img src="img/room-double.jpg" alt="" loading="lazy"></button>
+      <button class="ph m3" data-lb="img/houses.jpg" aria-label="Открыть фото: территория"><img src="img/houses.jpg" alt="" loading="lazy"></button>
+      <button class="ph m4" data-lb="img/winter-ice.jpg" aria-label="Открыть фото: зимний Байкал"><img src="img/winter-ice.jpg" alt="" loading="lazy"></button>
+      <button class="ph m5" data-lb="img/veranda-view.jpg" aria-label="Открыть фото: вид с веранды"><img src="img/veranda-view.jpg" alt="" loading="lazy"></button>
+      <button class="ph m6" data-lb="img/shore.jpg" aria-label="Открыть фото: берег"><img src="img/shore.jpg" alt="" loading="lazy" style="object-position:50% 70%"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="ph ph--para"><img src="img/winter-ice.jpg" alt="" data-parallax="0.15"></div>
+  <div class="wrap cta__in" data-rv>
+    <svg class="lotus-mark" style="color:var(--on-dark)" aria-hidden="true"><use href="#lotus"/></svg>
+    <h2>Приезжайте за своим Байкалом</h2>
+    <p>Оставьте заявку, и мы подберём номер и программу под ваши даты.</p>
+    <button class="btn" data-book>Забронировать <svg><use href="#arr"/></svg></button>
+  </div>
+</section>
+</main>
+
+<!-- ============ Footer ============ -->
+<footer class="ftr" id="contacts">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div class="ftr__about">
+        <a class="logo" href="#top"><svg aria-hidden="true"><use href="#lotus"/></svg><span><b>ЛОТОС</b><small>гостевой дом · Курма</small></span></a>
+        <p>Проживание и туры на берегу Малого Моря круглый год.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul><li><a href="#about">О доме</a></li><li><a href="#rooms">Номера</a></li><li><a href="#activities">Туры и отдых</a></li><li><a href="#nature">Природа рядом</a></li><li><a href="#gallery">Фотографии</a></li></ul>
+      </div>
+      <div>
+        <h4>Адрес</h4>
+        <ul><li>Иркутская область,<br>Ольхонский район,<br>д. Курма</li><li><a href="https://yandex.ru/maps/?text=%D0%9A%D1%83%D1%80%D0%BC%D0%B0%20%D0%9E%D0%BB%D1%8C%D1%85%D0%BE%D0%BD%D1%81%D0%BA%D0%B8%D0%B9%20%D1%80%D0%B0%D0%B9%D0%BE%D0%BD" target="_blank" rel="noopener">Открыть на карте ↗</a></li></ul>
+      </div>
+      <div>
+        <h4>Связь</h4>
+        <ul><li>+7 (000) 000-00-00</li><li>WhatsApp · Telegram</li><li>mail@lotos-kurma.ru</li><li class="ph-note">контакты временные</li></ul>
+      </div>
+    </div>
+    <div class="ftr__big" aria-hidden="true">ЛОТОС · КУРМА</div>
+    <div class="ftr__bottom"><span>© Гостевой дом «Лотос», 2026</span><span>Политика конфиденциальности</span></div>
+  </div>
+</footer>
+
+<!-- ============ Room modal ============ -->
+<div class="modal" id="roomModal" hidden role="dialog" aria-modal="true" aria-labelledby="rmTitle">
+  <div class="modal__bg" data-close></div>
+  <div class="modal__box">
+    <button class="modal__x" data-close aria-label="Закрыть"><svg><use href="#x"/></svg></button>
+    <div class="rm">
+      <div class="rm__gal">
+        <div class="rm__main"><img id="rmMain" src="" alt=""></div>
+        <div class="rm__thumbs" id="rmThumbs"></div>
+      </div>
+      <div class="rm__info">
+        <div class="eyebrow">Номер</div>
+        <h3 id="rmTitle"></h3>
+        <p id="rmText" class="lead"></p>
+        <ul id="rmList"></ul>
+        <p style="color:var(--muted);font-size:14px">Стоимость и наличие уточняйте при бронировании.</p>
+        <button class="btn" data-book style="justify-self:start">Забронировать <svg><use href="#arr"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Booking modal ============ -->
+<div class="modal" id="bookModal" hidden role="dialog" aria-modal="true" aria-labelledby="bkTitle">
+  <div class="modal__bg" data-close></div>
+  <div class="modal__box" style="width:min(720px,100%)">
+    <button class="modal__x" data-close aria-label="Закрыть"><svg><use href="#x"/></svg></button>
+    <div class="book">
+      <div class="eyebrow">Заявка на проживание</div>
+      <h3 id="bkTitle">Забронировать</h3>
+      <form id="bookForm" novalidate>
+        <div class="field"><label for="bk-in">Заезд</label><input id="bk-in" type="date" required></div>
+        <div class="field"><label for="bk-out">Выезд</label><input id="bk-out" type="date" required></div>
+        <div class="field"><label for="bk-guests">Гостей</label><select id="bk-guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+        <div class="field"><label for="bk-room">Номер</label><select id="bk-room"><option>Любой</option><option>Стандарт</option><option>Семейный</option><option>С кухней</option><option>С террасой</option></select></div>
+        <div class="field"><label for="bk-name">Имя</label><input id="bk-name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="bk-phone">Телефон</label><input id="bk-phone" type="tel" autocomplete="tel" placeholder="+7" required></div>
+        <div class="field field--full"><label for="bk-note">Пожелания и туры</label><textarea id="bk-note" rows="2" placeholder="Например: гидроцикл, баня на льду"></textarea></div>
+        <button class="btn" type="submit">Отправить заявку <svg><use href="#arr"/></svg></button>
+      </form>
+      <div class="book__ok" id="bookOk" hidden><b>Заявка собрана</b><span>Это макет сайта: отправку заявок подключим, когда будут готовы контакты.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Lightbox ============ -->
+<div class="modal lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Фотография">
+  <div class="modal__bg" data-close></div>
+  <div class="modal__box"><button class="modal__x" data-close aria-label="Закрыть"><svg><use href="#x"/></svg></button><img id="lbImg" src="" alt=""></div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
