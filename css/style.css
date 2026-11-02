@@ -591,7 +591,8 @@ p{margin:0}
 .ftr__about{display:grid;gap:18px;align-content:start}
 .ftr__about p{color:var(--on-dark-muted);font-size:14px;max-width:34ch}
 .ftr__phone{font-family:var(--f-display);font-size:30px;color:var(--on-dark)!important;line-height:1.1}
-.ftr__big{font-family:var(--f-display);font-size:clamp(56px,16vw,240px);line-height:.85;letter-spacing:.06em;color:rgba(238,243,242,.07);margin-top:48px;white-space:nowrap;overflow:hidden}
+.ftr__big{display:block;width:100%;height:auto;margin:48px 0 18px;overflow:visible}
+.ftr__big text{font-family:var(--f-display);font-size:140px;fill:rgba(238,243,242,.07)}
 .ftr__bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-top:24px;border-top:1px solid var(--line-dark);font-size:13px;color:var(--on-dark-muted)}
 .ftr__bottom nav{display:flex;flex-wrap:wrap;gap:8px 20px}
 @media (max-width:960px){.ftr__grid{grid-template-columns:1fr 1fr}.ftr__about{grid-column:1/-1}}
