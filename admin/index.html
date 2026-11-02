@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#10272F">
+<title>Лотос — админ-панель</title>
+<link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="lotus" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M32 12c6 7 8 15 8 22s-3 12-8 15c-5-3-8-8-8-15s2-15 8-22z"/><path d="M24 30c-6-3-12-3-17-2 1 9 6 18 18 21"/><path d="M40 30c6-3 12-3 17-2-1 9-6 18-18 21"/><path d="M12 50c6 4 13 5 20 5s14-1 20-5"/></g></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></g></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-ref" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-l" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></g></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></g></symbol>
+</svg>
+
+<!-- ============ Вход ============ -->
+<div class="login" id="login" hidden>
+  <form class="login__box" id="loginForm">
+    <svg class="login__logo"><use href="#lotus"/></svg>
+    <h1>Лотос</h1>
+    <p>Админ-панель гостевого дома</p>
+    <label class="f"><span>Пароль</span><input type="password" id="loginPw" autocomplete="current-password" required></label>
+    <div class="err" id="loginErr" hidden></div>
+    <button class="b b--primary" type="submit">Войти</button>
+    <p class="hint" id="loginHint" hidden>Демо-режим: пароль <b>demo</b></p>
+  </form>
+</div>
+
+<!-- ============ Приложение ============ -->
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="side__brand"><svg><use href="#lotus"/></svg><span><b>ЛОТОС</b><small>админ-панель</small></span></div>
+    <nav class="side__nav">
+      <button data-view="orders" class="is-on"><svg><use href="#i-list"/></svg><span>Заявки</span><em id="navNew" hidden>0</em></button>
+      <button data-view="calendar"><svg><use href="#i-cal"/></svg><span>Календарь</span></button>
+      <button data-view="settings"><svg><use href="#i-gear"/></svg><span>Настройки</span></button>
+    </nav>
+    <div class="side__foot">
+      <a href="../index.html" class="side__site">← На сайт</a>
+      <button id="logout" class="side__out"><svg><use href="#i-out"/></svg><span>Выйти</span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="demo" id="demoBar" hidden>Демо-режим: сервер не подключён, данные хранятся только в этом браузере. Заявки с пометкой «Пример» — образцы. <button id="demoReset" class="lnk">Сбросить демо-данные</button></div>
+
+    <!-- Заявки -->
+    <section class="view" id="v-orders">
+      <header class="vh">
+        <div><h1>Заявки</h1><p class="sub" id="ordersSub">Новые заявки появляются автоматически</p></div>
+        <button class="b b--icon" id="refresh" title="Обновить"><svg><use href="#i-ref"/></svg></button>
+      </header>
+      <div class="stats" id="stats"></div>
+      <div class="toolbar">
+        <div class="chips" id="statusChips">
+          <button data-st="" class="is-on">Все</button><button data-st="new">Новые</button><button data-st="in_progress">В обработке</button><button data-st="done">Завершены</button><button data-st="rejected">Отказ</button>
+        </div>
+        <label class="search"><svg><use href="#i-search"/></svg><input id="q" type="search" placeholder="Поиск: ФИО, телефон или №"></label>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl" id="ordersTbl">
+          <thead><tr><th>№</th><th>Создана</th><th>Клиент</th><th>Что</th><th>Даты</th><th class="r">Сумма</th><th>Статус</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty" id="ordersEmpty" hidden>Заявок пока нет</div>
+      </div>
+    </section>
+
+    <!-- Календарь -->
+    <section class="view" id="v-calendar" hidden>
+      <header class="vh">
+        <div><h1>Календарь занятости</h1><p class="sub">Нажмите на свободный день, чтобы закрыть его для брони (например, ремонт или бронь по телефону). Нажмите ещё раз, чтобы открыть.</p></div>
+        <div class="monthnav"><button class="b b--icon" id="calPrev"><svg><use href="#i-l"/></svg></button><b id="calTitle"></b><button class="b b--icon" id="calNext"><svg><use href="#i-r"/></svg></button></div>
+      </header>
+      <div class="legend"><span><i class="c-progress"></i>В обработке</span><span><i class="c-done"></i>Подтверждено</span><span><i class="c-block"></i>Закрыто вручную</span><span><i class="c-avito"></i>Бронь с Авито</span></div>
+      <div class="board-wrap"><table class="board" id="board"></table></div>
+      <h2 class="h2">Новые заявки на проживание в этом месяце</h2>
+      <p class="sub">Ещё не занимают даты. Даты займутся, когда вы переведёте заявку в «В обработке» или «Успешно завершена».</p>
+      <div class="pending" id="pending"></div>
+    </section>
+
+    <!-- Настройки -->
+    <section class="view" id="v-settings" hidden>
+      <header class="vh"><div><h1>Настройки</h1></div></header>
+
+      <div class="card">
+        <h2>Уведомления в Telegram</h2>
+        <p class="sub">О каждой новой заявке бот пришлёт сообщение: номер заявки, что и на какие даты. ФИО и телефон в Telegram не отправляются, их видно только здесь.</p>
+        <ol class="steps">
+          <li>В Telegram откройте <b>@BotFather</b>, отправьте <code>/newbot</code>, придумайте имя. BotFather пришлёт <b>токен</b>.</li>
+          <li>Вставьте токен ниже и нажмите «Сохранить».</li>
+          <li>Напишите вашему боту любое сообщение (или добавьте бота в рабочую группу и напишите там).</li>
+          <li>Нажмите «Найти мой чат», выберите чат и нажмите «Отправить тест».</li>
+        </ol>
+        <div class="grid2">
+          <label class="f"><span>Токен бота <em id="tgHint"></em></span><input id="tgToken" type="password" placeholder="123456789:AA…" autocomplete="off"></label>
+          <label class="f"><span>ID чата</span><input id="tgChat" placeholder="например, 123456789"></label>
+        </div>
+        <div class="row">
+          <button class="b b--primary" id="tgSave">Сохранить</button>
+          <button class="b" id="tgFind">Найти мой чат</button>
+          <button class="b" id="tgTest">Отправить тест</button>
+        </div>
+        <div class="chats" id="tgChats"></div>
+      </div>
+
+      <div class="card">
+        <h2>Номера и синхронизация с Авито</h2>
+        <p class="sub">Чтобы не было двойных броней, свяжите календарь каждого номера с объявлением на Авито. На Авито: объявление → «Управлять календарём» → «Синхронизировать календарь с другого сайта».</p>
+        <ol class="steps">
+          <li>Скопируйте ссылку из поля «Ваш календарь на Авито» и вставьте её ниже в «Ссылка из Авито». Брони с Авито появятся в календаре сайта (обновление каждые 15 минут).</li>
+          <li>Нажмите «Копировать» у «Ссылка для Авито» и вставьте её на Авито в поле для календаря с другого сайта. Тогда брони с сайта закроют даты на Авито.</li>
+        </ol>
+        <div id="units"></div>
+        <div class="row"><input id="newUnit" class="inp" placeholder="Название нового номера"><button class="b" id="addUnit">Добавить номер</button></div>
+      </div>
+
+      <div class="card">
+        <h2>Цены</h2>
+        <p class="sub">Цена номера за сутки по периодам. Правило действует для ночи, которая начинается в эту дату. Изменения сразу появятся на сайте и в расчёте брони.</p>
+        <div class="table-wrap"><table class="tbl tbl--edit" id="priceTbl"><thead><tr><th>С даты</th><th>По дату</th><th>Цена, ₽</th><th>Название</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="row"><button class="b" id="addPeriod">+ Период</button></div>
+        <h3 class="h3">Баня на колёсах, ₽ в час</h3>
+        <div class="grid3">
+          <label class="f"><span>Лето</span><input id="banyaSummer" type="number" min="0" step="100"></label>
+          <label class="f"><span>Зима</span><input id="banyaWinter" type="number" min="0" step="100"></label>
+        </div>
+        <div class="f"><span>Зимние месяцы</span><div class="months" id="winterMonths"></div></div>
+        <h3 class="h3">Хивус «Спутник 12»</h3>
+        <p class="sub">Пустая цена — «по договорённости». Галочка «за чел.» — цена умножается на число людей (как у переправы).</p>
+        <div class="table-wrap"><table class="tbl tbl--edit" id="hivusTbl"><thead><tr><th>Раздел</th><th>Программа</th><th>Цена, ₽</th><th>За чел.</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="row"><button class="b" id="addHivus">+ Программа</button></div>
+        <div class="row"><button class="b b--primary" id="savePricing">Сохранить цены</button></div>
+      </div>
+
+      <div class="card">
+        <h2>Пароль</h2>
+        <div class="grid3">
+          <label class="f"><span>Текущий пароль</span><input id="pwCur" type="password" autocomplete="current-password"></label>
+          <label class="f"><span>Новый пароль (от 10 символов)</span><input id="pwNew" type="password" autocomplete="new-password"></label>
+        </div>
+        <div class="row"><button class="b" id="pwSave">Сменить пароль</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ Карточка заявки ============ -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer__bg" data-close></div>
+  <div class="drawer__box" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+    <header class="drawer__head">
+      <div><span class="sub" id="dCreated"></span><h2 id="dTitle">Заявка</h2></div>
+      <button class="b b--icon" data-close aria-label="Закрыть"><svg><use href="#i-x"/></svg></button>
+    </header>
+    <div class="drawer__body" id="dBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="../js/pricing.js"></script>
+<script src="../js/api.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
