@@ -197,7 +197,7 @@ button.stat:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(1
 .board thead th{padding:6px 0;min-width:34px;font-weight:600;color:var(--muted);background:var(--panel-2);position:sticky;top:0}
 .board thead th.we{color:var(--lotus)}
 .board thead th.today{background:var(--lotus);color:#fff}
-.board th.unit{position:sticky;left:0;z-index:1;background:var(--panel);text-align:left;padding:10px 12px;min-width:130px;font-size:14px;font-weight:700;color:var(--ink)}
+.board th.bu{position:sticky;left:0;z-index:1;background:var(--panel);text-align:left;padding:10px 12px;min-width:130px;font-size:14px;font-weight:700;color:var(--ink)}
 .board td button{display:block;width:100%;height:46px;border:0;background:none;font-size:11px;font-weight:700;padding:0}
 .board td button:hover{background:var(--lotus-soft)}
 .board td.past button{background:repeating-linear-gradient(0deg,transparent 0 6px,rgba(16,39,47,.03) 6px 7px);cursor:default}
@@ -229,3 +229,26 @@ button.stat:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(1
 .toast.is-err{background:var(--rej)}
 @media (max-width:860px){.toast{bottom:calc(88px + env(safe-area-inset-bottom,0px))}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* календарь на телефоне: узкая колонка номеров и плотная сетка */
+.board th.bu{box-shadow:1px 0 0 var(--line);border-radius:0}
+.board thead th.bu{background:var(--panel-2);z-index:2}
+@media (max-width:760px){
+  .board th.bu{min-width:96px;max-width:96px;padding:8px 10px;font-size:13px;white-space:normal;line-height:1.2}
+  .board thead th{min-width:40px}
+  .board td button{height:44px}
+  .legend{font-size:12px;gap:6px 12px}
+  .monthnav b{min-width:0;font-size:21px}
+  #v-calendar .vh{align-items:stretch}
+  #v-calendar .monthnav{width:100%;justify-content:space-between}
+}
+
+/* услуги в календаре */
+.board tr.grp th.bu{background:var(--ink);color:#fff;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px}
+.board tr.grp td{background:var(--ink);height:8px}
+.board tr.svc th.bu{color:var(--ink-2)}
+.board td.is-closed button{box-shadow:inset 0 0 0 2px var(--rej)}
+.cellmenu{position:fixed;z-index:70;display:grid;gap:4px;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 20px 50px -20px rgba(16,39,47,.5);min-width:220px;animation:up .25s both}
+.cellmenu button{border:0;background:none;text-align:left;padding:11px 12px;border-radius:10px;font-weight:600;font-size:14px}
+.cellmenu button:hover{background:var(--panel-2)}
+.c-closed{box-shadow:inset 0 0 0 2px var(--rej)}

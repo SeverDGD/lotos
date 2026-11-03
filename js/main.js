@@ -20,7 +20,7 @@ const desktop = () => innerWidth > 900;
 const allowFx = !reduce && fine && innerWidth > 900;
 
 /* версии фото: имя -> [[файл, ширина], ...] */
-const IMG = {"baikal-panorama":[["baikal-panorama-480.webp",480],["baikal-panorama-960.webp",960],["baikal-panorama-1600.webp",1080]],"banya-in":[["banya-in-480.webp",480],["banya-in-960.webp",600]],"banya-out":[["banya-out-480.webp",480],["banya-out-960.webp",600]],"banya-snow":[["banya-snow-480.webp",480],["banya-snow-960.webp",800]],"bay-hills":[["bay-hills-480.webp",480],["bay-hills-960.webp",600]],"bbq-lounge":[["bbq-lounge-480.webp",480],["bbq-lounge-960.webp",800]],"bike":[["bike-480.webp",480],["bike-960.webp",960]],"buggy-group":[["buggy-group-480.webp",480],["buggy-group-960.webp",637]],"buggy-lights":[["buggy-lights-480.webp",480],["buggy-lights-960.webp",488]],"buggy-snow":[["buggy-snow-480.webp",480],["buggy-snow-960.webp",492]],"buggy-sunset":[["buggy-sunset-480.webp",480],["buggy-sunset-960.webp",492]],"buggy-team":[["buggy-team-480.webp",480],["buggy-team-960.webp",491]],"dome-couple":[["dome-couple-480.webp",480],["dome-couple-960.webp",960],["dome-couple-1600.webp",1600]],"dome-lights":[["dome-lights-480.webp",480],["dome-lights-960.webp",960],["dome-lights-1600.webp",1600]],"dome-outside":[["dome-outside-480.webp",480],["dome-outside-960.webp",960],["dome-outside-1600.webp",1290]],"dome-table":[["dome-table-480.webp",480],["dome-table-960.webp",960],["dome-table-1600.webp",1600]],"hero-dome":[["hero-dome-480.webp",480],["hero-dome-960.webp",960],["hero-dome-1600.webp",1600],["hero-dome-1920.webp",1920]],"horses":[["horses-480.webp",466]],"horses-water":[["horses-water-480.webp",466]],"houses":[["houses-480.webp",480],["houses-960.webp",960],["houses-1600.webp",1280]],"hovercraft-dawn":[["hovercraft-dawn-480.webp",480],["hovercraft-dawn-960.webp",960]],"hovercraft-green":[["hovercraft-green-480.webp",450]],"hovercraft-sunset":[["hovercraft-sunset-480.webp",450]],"ice-buggies":[["ice-buggies-480.webp",480],["ice-buggies-960.webp",484]],"ice-grotto":[["ice-grotto-480.webp",480],["ice-grotto-960.webp",960]],"olkhon-gates":[["olkhon-gates-480.webp",480],["olkhon-gates-960.webp",720]],"room-bath":[["room-bath-480.webp",480],["room-bath-960.webp",960]],"room-double":[["room-double-480.webp",480],["room-double-960.webp",960]],"room-family":[["room-family-480.webp",480],["room-family-960.webp",960]],"room-fridge":[["room-fridge-480.webp",480],["room-fridge-960.webp",960]],"room-kitchen":[["room-kitchen-480.webp",480],["room-kitchen-960.webp",960]],"shore":[["shore-480.webp",480],["shore-960.webp",960],["shore-1600.webp",1280]],"spring":[["spring-480.webp",480],["spring-960.webp",960],["spring-1600.webp",1280]],"sunset-sea":[["sunset-sea-480.webp",480],["sunset-sea-960.webp",800]],"terrace":[["terrace-480.webp",480],["terrace-960.webp",960]],"veranda-view":[["veranda-view-480.webp",480],["veranda-view-960.webp",960]],"winter-ice":[["winter-ice-480.webp",480],["winter-ice-960.webp",960],["winter-ice-1600.webp",1280]]};
+const IMG = {"baikal-panorama":[["baikal-panorama-480.webp",480],["baikal-panorama-960.webp",960],["baikal-panorama-1600.webp",1080]],"banya-in":[["banya-in-480.webp",480],["banya-in-960.webp",600]],"banya-out":[["banya-out-480.webp",480],["banya-out-960.webp",600]],"banya-snow":[["banya-snow-480.webp",480],["banya-snow-960.webp",800]],"bay-hills":[["bay-hills-480.webp",480],["bay-hills-960.webp",600]],"bbq-lounge":[["bbq-lounge-480.webp",480],["bbq-lounge-960.webp",800]],"bike":[["bike-480.webp",480],["bike-960.webp",960]],"buggy-blue":[["buggy-blue-480.webp",480],["buggy-blue-960.webp",747]],"buggy-dusk":[["buggy-dusk-480.webp",480],["buggy-dusk-960.webp",761]],"buggy-group":[["buggy-group-480.webp",480],["buggy-group-960.webp",637]],"buggy-lights":[["buggy-lights-480.webp",480],["buggy-lights-960.webp",488]],"buggy-mirror":[["buggy-mirror-480.webp",480],["buggy-mirror-960.webp",613]],"buggy-red":[["buggy-red-480.webp",480],["buggy-red-960.webp",612]],"buggy-shamanka":[["buggy-shamanka-480.webp",478]],"buggy-snow":[["buggy-snow-480.webp",480],["buggy-snow-960.webp",492]],"buggy-sunset":[["buggy-sunset-480.webp",480],["buggy-sunset-960.webp",492]],"buggy-team":[["buggy-team-480.webp",480],["buggy-team-960.webp",491]],"dome-couple":[["dome-couple-480.webp",480],["dome-couple-960.webp",960],["dome-couple-1600.webp",1600]],"dome-lights":[["dome-lights-480.webp",480],["dome-lights-960.webp",960],["dome-lights-1600.webp",1600]],"dome-outside":[["dome-outside-480.webp",480],["dome-outside-960.webp",960],["dome-outside-1600.webp",1290]],"dome-table":[["dome-table-480.webp",480],["dome-table-960.webp",960],["dome-table-1600.webp",1600]],"hero-dome":[["hero-dome-480.webp",480],["hero-dome-960.webp",960],["hero-dome-1600.webp",1600],["hero-dome-1920.webp",1920]],"horses":[["horses-480.webp",466]],"horses-water":[["horses-water-480.webp",466]],"houses":[["houses-480.webp",480],["houses-960.webp",960],["houses-1600.webp",1280]],"hovercraft-dawn":[["hovercraft-dawn-480.webp",480],["hovercraft-dawn-960.webp",960]],"hovercraft-green":[["hovercraft-green-480.webp",450]],"hovercraft-sunset":[["hovercraft-sunset-480.webp",450]],"ice-buggies":[["ice-buggies-480.webp",480],["ice-buggies-960.webp",484]],"ice-cave":[["ice-cave-480.webp",480],["ice-cave-960.webp",747]],"ice-grotto":[["ice-grotto-480.webp",480],["ice-grotto-960.webp",960]],"olkhon-gates":[["olkhon-gates-480.webp",480],["olkhon-gates-960.webp",720]],"room-bath":[["room-bath-480.webp",480],["room-bath-960.webp",960]],"room-double":[["room-double-480.webp",480],["room-double-960.webp",960]],"room-family":[["room-family-480.webp",480],["room-family-960.webp",960]],"room-fridge":[["room-fridge-480.webp",480],["room-fridge-960.webp",960]],"room-kitchen":[["room-kitchen-480.webp",480],["room-kitchen-960.webp",960],["room-kitchen-1600.webp",1280]],"room-overview":[["room-overview-480.webp",480],["room-overview-960.webp",960]],"room-sofa":[["room-sofa-480.webp",480],["room-sofa-960.webp",960]],"room-window":[["room-window-480.webp",480],["room-window-960.webp",960]],"shore":[["shore-480.webp",480],["shore-960.webp",960],["shore-1600.webp",1280]],"spring":[["spring-480.webp",480],["spring-960.webp",960],["spring-1600.webp",1280]],"sunset-sea":[["sunset-sea-480.webp",480],["sunset-sea-960.webp",800]],"terrace":[["terrace-480.webp",480],["terrace-960.webp",960]],"veranda-view":[["veranda-view-480.webp",480],["veranda-view-960.webp",960]],"winter-ice":[["winter-ice-480.webp",480],["winter-ice-960.webp",960],["winter-ice-1600.webp",1280]]};
 const srcset = n => (IMG[n] || []).map(([f, w]) => `img/${f} ${w}w`).join(', ');
 const midSrc = n => { const v = IMG[n] || []; const m = v.find(([, w]) => w >= 900) || v[v.length - 1]; return m ? 'img/' + m[0] : ''; };
 
@@ -316,10 +316,10 @@ addEventListener('keydown', e => {
 
 /* ---------- номера ---------- */
 const ROOMS = {
-  1: { t: 'Стандарт', d: 'Светлый номер с двуспальной кроватью и обеденным столом.', p: ['room-double', 'room-bath', 'room-fridge', 'terrace', 'veranda-view'], l: ['Тёплые полы', 'Двуспальная кровать', 'Душевая и санузел в номере', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
-  2: { t: 'Семейный', d: 'Кровать и диван, обеденный стол. Удобно для семьи с детьми.', p: ['room-family', 'room-bath', 'room-kitchen', 'room-fridge', 'bbq-lounge'], l: ['Тёплые полы', 'Двуспальная кровать и диван', 'Душевая и санузел в номере', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
-  3: { t: 'С кухней', d: 'Кухонный уголок с микроволновкой, чайником и посудой, шкаф для вещей.', p: ['room-kitchen', 'room-double', 'room-bath', 'room-fridge', 'veranda-view'], l: ['Тёплые полы', 'Кухонный уголок', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Душевая и санузел', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
-  4: { t: 'С террасой', d: 'Отдельный вход и своя терраса со столиком, откуда видно Байкал.', p: ['terrace', 'veranda-view', 'room-double', 'room-bath', 'bbq-lounge'], l: ['Тёплые полы', 'Отдельный вход и терраса', 'Своя зона барбекю', 'Душевая и санузел', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены'] }
+  1: { t: 'Стандарт', d: 'Светлый номер с двуспальной кроватью и обеденным столом.', p: ['room-double', 'room-overview', 'room-bath', 'room-fridge', 'terrace'], l: ['Тёплые полы', 'Двуспальная кровать', 'Душевая и санузел в номере', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
+  2: { t: 'Семейный', d: 'Кровать и диван, обеденный стол. Удобно для семьи с детьми.', p: ['room-family', 'room-sofa', 'room-window', 'room-bath', 'bbq-lounge'], l: ['Тёплые полы', 'Двуспальная кровать и диван', 'Душевая и санузел в номере', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
+  3: { t: 'С кухней', d: 'Кухонный уголок с микроволновкой, чайником и посудой, шкаф для вещей.', p: ['room-kitchen', 'room-overview', 'room-sofa', 'room-bath', 'veranda-view'], l: ['Тёплые полы', 'Кухонный уголок', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Душевая и санузел', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
+  4: { t: 'С террасой', d: 'Отдельный вход и своя терраса со столиком, откуда видно Байкал.', p: ['terrace', 'veranda-view', 'room-window', 'room-bath', 'bbq-lounge'], l: ['Тёплые полы', 'Отдельный вход и терраса', 'Своя зона барбекю', 'Душевая и санузел', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены'] }
 };
 const rmMain = $('#rmMain'), rmThumbs = $('#rmThumbs');
 const showImg = n => { rmMain.style.animation = 'none'; void rmMain.offsetWidth; rmMain.style.animation = ''; rmMain.srcset = srcset(n); rmMain.src = midSrc(n); $$('button', rmThumbs).forEach(b => b.setAttribute('aria-current', b.dataset.src === n)); };
@@ -376,6 +376,10 @@ function renderPrices() {
   const cur = P.roomRule(pricing, today) || pricing.rooms.find(r => r.to >= today) || pricing.rooms[0];
   $$('[data-room-price]').forEach(el => { el.innerHTML = `от ${P.rub(Math.min(...pricing.rooms.filter(r => r.to >= today).map(r => r.price).concat(cur ? [cur.price] : [])))} <small>/ сутки</small>`; });
   $$('[data-banya]').forEach(el => { el.textContent = P.rub(pricing.banya[el.dataset.banya]); });
+  (pricing.buggy || []).forEach(x => {
+    $$(`[data-buggy="${x.name}"]`).forEach(el => { el.innerHTML = x.price == null ? 'по договорённости' : `${x.priceTo ? P.rub(x.price).replace(/\s₽$/, '') + '–' + P.rub(x.priceTo) : P.rub(x.price)}<small>с человека</small>`; });
+    $$(`[data-buggy-plain="${x.name}"]`).forEach(el => { if (x.price != null) el.textContent = P.rub(x.price); });
+  });
   const hp = $('#hivusPrices'), hv = pricing.hovercraft || [];
   if (hp && hv.length) {
     const groups = [];
@@ -391,6 +395,8 @@ async function loadAvailability() {
   renderCal();
 }
 const busySet = () => new Set(bk.unit ? (bk.busy.units[bk.unit] || []) : (bk.busy.any || []));
+/* дни, которые менеджер закрыл для услуги (баня, СВП, багги) */
+const svcSet = () => { const k = P.serviceKey(bk.kind, bk.kind === 'tour' ? $('#bk-service').value : null); return new Set(k && bk.busy.services ? (bk.busy.services[k] || []) : []); };
 
 /* календарь */
 const cal = $('#bkCal');
@@ -412,17 +418,17 @@ function monthGrid(y, m, busy) {
     } else if (bk.date === ds) cls.push('is-one');
     // для выезда можно выбрать занятый день (в этот день уже никто не ночует у вас)
     const canCheckout = bk.kind === 'stay' && bk.from && !bk.to && ds > bk.from && ![...P.nights(bk.from, ds)].some(n => busy.has(n));
-    const disabled = past || (isBusy && !canCheckout && bk.kind === 'stay');
+    const disabled = past || (isBusy && (bk.kind !== 'stay' || !canCheckout));
     let price = '';
-    if (bk.kind === 'stay' && !past && !isBusy) { const r = P.roomRule(pricing, ds); if (r) price = `<small>${Math.round(r.price / 1000)}к</small>`; }
-    if (bk.kind === 'banya' && !past) price = `<small>${Math.round(P.banyaRate(pricing, ds) / 100) / 10}к</small>`;
+    if (bk.kind === 'stay' && !past && !isBusy) { const r = P.roomRule(pricing, ds); if (r) price = `<small>${String(r.price / 1000).replace('.', ',')}&nbsp;т.р.</small>`; }
+    if (bk.kind === 'banya' && !past) price = `<small>${String(Math.round(P.banyaRate(pricing, ds) / 100) / 10).replace('.', ',')}&nbsp;т.р.</small>`;
     h += `<button type="button" class="${cls.join(' ')}" data-d="${ds}" ${disabled ? 'disabled' : ''} aria-label="${dShort(ds)}${isBusy ? ', занято' : ''}">${d}${price}</button>`;
   }
   return h + '</div></div>';
 }
 function renderCal() {
   if (!bk.monthStart) { const [y, m] = today.split('-'); bk.monthStart = [+y, +m - 1]; }
-  const [y, m] = bk.monthStart, busy = bk.kind === 'stay' ? busySet() : new Set();
+  const [y, m] = bk.monthStart, busy = bk.kind === 'stay' ? busySet() : svcSet();
   const n = new Date(Date.UTC(y, m + 1, 1));
   const atStart = `${y}-${String(m + 1).padStart(2, '0')}` <= today.slice(0, 7);
   let hint = '';
@@ -430,7 +436,7 @@ function renderCal() {
   else hint = bk.date ? dShort(bk.date) : (bk.kind === 'banya' ? 'Выберите дату для бани' : 'Выберите желаемую дату (можно уточнить с менеджером)');
   cal.innerHTML = `<div class="cal__head"><button type="button" class="cal__nav" data-nav="-1" aria-label="Предыдущий месяц" ${atStart ? 'disabled' : ''}><svg><use href="#arl"/></svg></button><div class="cal__hint" aria-live="polite">${hint}</div><button type="button" class="cal__nav" data-nav="1" aria-label="Следующий месяц"><svg><use href="#arr"/></svg></button></div>
     <div class="cal__months">${monthGrid(y, m, busy)}${monthGrid(n.getUTCFullYear(), n.getUTCMonth(), busy)}</div>
-    <div class="cal__legend"><span><i class="l-sel"></i>выбрано</span>${bk.kind === 'stay' ? '<span><i class="l-busy"></i>занято</span><span>«10к» — цена за сутки</span>' : bk.kind === 'banya' ? '<span>«3,5к» — цена за час</span>' : ''}</div>`;
+    <div class="cal__legend"><span><i class="l-sel"></i>выбрано</span>${bk.kind === 'stay' ? '<span><i class="l-busy"></i>занято</span><span>«10 т.р.» — цена за сутки, тыс. ₽</span>' : bk.kind === 'banya' ? '<span><i class="l-busy"></i>занято</span><span>«3,5 т.р.» — цена за час, тыс. ₽</span>' : '<span><i class="l-busy"></i>занято</span>'}</div>`;
   renderSum();
 }
 cal.addEventListener('click', e => {
@@ -461,7 +467,7 @@ function renderSum() {
     html = `<div class="bk__sum-top"><span>${dShort(bk.date)} · ${q.hours} ч · ${q.season}</span><b>${P.rub(q.total)}</b></div><p>${P.rub(q.rate)} в час. Время начала обсудите с менеджером.</p>`;
   } else if (bk.kind === 'tour') {
     const svc = $('#bk-service').value, q = P.tourQuote(pricing, svc, bk.people);
-    if (q || bk.date) html = `<div class="bk__sum-top"><span>${svc}${bk.date ? ' · ' + dShort(bk.date) : ''}</span><b${q ? '' : ' style="font-size:24px"'}>${q ? P.rub(q.total) : 'по договорённости'}</b></div><p>${q ? (q.perPerson ? `${P.rub(q.price)} × ${q.people} чел. ` : 'Цена за поездку на хивусе. ') + 'Время и детали обсудите с менеджером.' : 'Стоимость менеджер рассчитает под ваш запрос.'}</p>`;
+    if (q || bk.date) html = `<div class="bk__sum-top"><span>${svc}${bk.date ? ' · ' + dShort(bk.date) : ''}</span><b${q ? '' : ' style="font-size:24px"'}>${q ? (q.priceFrom ? 'от ' : '') + P.rub(q.total) : 'по договорённости'}</b></div><p>${q ? (q.perPerson ? `${q.priceFrom ? 'От ' : ''}${P.rub(q.price)} × ${q.people} чел. ` : 'Цена за поездку на судне. ') + 'Время и детали обсудите с менеджером.' : 'Стоимость менеджер рассчитает под ваш запрос.'}</p>`;
   } else if (bk.kind === 'dome' && bk.date) {
     html = `<div class="bk__sum-top"><span>${dShort(bk.date)}</span><b style="font-size:24px">по договорённости</b></div><p>Стоимость менеджер рассчитает под ваш запрос.</p>`;
   }
@@ -484,7 +490,7 @@ function setKind(k) {
 kinds.forEach(b => b.addEventListener('click', () => setKind(b.dataset.kind)));
 $('#bk-unit').addEventListener('change', e => { bk.unit = e.target.value; const busy = busySet(); if (bk.from && (busy.has(bk.from) || (bk.to && P.nights(bk.from, bk.to).some(n => busy.has(n))))) { bk.from = bk.to = null; toast('В этом номере выбранные даты заняты — выберите другие'); } renderCal(); validate(); });
 $$('[data-step]').forEach(b => b.addEventListener('click', () => {
-  const [k, d] = b.dataset.step.split(':'), lim = { guests: [1, 6], hours: [1, 8], people: [1, 30] }[k];
+  const [k, d] = b.dataset.step.split(':'), lim = { guests: [1, 5], hours: [1, 8], people: [1, 30] }[k];
   bk[k] = Math.max(lim[0], Math.min(lim[1], bk[k] + +d));
   $('#bk-' + k).textContent = k === 'hours' ? bk[k] + ' ч' : bk[k];
   renderSum();
@@ -497,7 +503,7 @@ document.addEventListener('click', e => {
   if (b.dataset.unit) { $('#bk-unit').value = b.dataset.unit; $('#bk-unit').dispatchEvent(new Event('change')); }
   if (b.dataset.service) { const sel = $('#bk-service'); [...sel.options].forEach(o => { o.selected = o.value === b.dataset.service; }); renderSum(); }
 });
-$('#bk-service').addEventListener('change', renderSum);
+$('#bk-service').addEventListener('change', () => { if (bk.date && svcSet().has(bk.date)) { bk.date = null; toast('На выбранную дату эта услуга уже занята — выберите другой день'); } renderCal(); });
 
 /* маска телефона */
 const phone = $('#bk-phone');
@@ -573,7 +579,9 @@ $('#bkAgain').addEventListener('click', () => {
   try {
     const cfg = await API.config();
     pricing = cfg.pricing || pricing; today = cfg.today || today; units = cfg.units || [];
-    $('#bk-unit').innerHTML = '<option value="">Любой свободный</option>' + units.map(u => `<option value="${u.id}">${u.name}</option>`).join('');
+    $('#bk-unit').innerHTML = '<option value="">Любой свободный</option>' + units.map(u => `<option value="${u.id}">${u.name}${u.note ? ' — ' + u.note : ''}</option>`).join('');
+    const picks = $('#roomPicks');
+    if (picks && units.length) picks.innerHTML = units.map(u => `<a class="pick" href="#booking" data-book="stay" data-unit="${u.id}"><b>${u.name}</b><span>${u.note || 'стандартная комплектация'}</span><i>Выбрать <svg><use href="#arr"/></svg></i></a>`).join('');
     if (cfg.tours) $('#bk-service').innerHTML = cfg.tours.map(t => `<option value="${t}">${t}</option>`).join('');
   } catch (e) {}
   if (API.mode === 'demo') { $('#demoFlag').hidden = false; $('#adminLink').hidden = false; }

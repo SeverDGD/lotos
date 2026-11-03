@@ -84,10 +84,10 @@
     <!-- Календарь -->
     <section class="view" id="v-calendar" hidden>
       <header class="vh">
-        <div><h1>Календарь занятости</h1><p class="sub">Нажмите на свободный день, чтобы закрыть его для брони (например, ремонт или бронь по телефону). Нажмите ещё раз, чтобы открыть.</p></div>
+        <div><h1>Календарь занятости</h1><p class="sub">Номера и услуги (баня, СВП, багги). Нажмите на свободный день, чтобы закрыть его: например, ремонт, бронь по телефону или судно уже расписано на весь день. Закрытый день нельзя выбрать на сайте. Нажмите ещё раз, чтобы открыть.</p></div>
         <div class="monthnav"><button class="b b--icon" id="calPrev"><svg><use href="#i-l"/></svg></button><b id="calTitle"></b><button class="b b--icon" id="calNext"><svg><use href="#i-r"/></svg></button></div>
       </header>
-      <div class="legend"><span><i class="c-progress"></i>В обработке</span><span><i class="c-done"></i>Подтверждено</span><span><i class="c-block"></i>Закрыто вручную</span><span><i class="c-avito"></i>Бронь с Авито</span></div>
+      <div class="legend"><span><i class="c-progress"></i>В обработке</span><span><i class="c-done"></i>Подтверждено</span><span><i class="c-block"></i>Закрыто вручную</span><span><i class="c-avito"></i>Бронь с Авито</span><span><i class="c-closed"></i>Услуга: день закрыт</span></div>
       <div class="board-wrap"><table class="board" id="board"></table></div>
       <h2 class="h2">Новые заявки на проживание в этом месяце</h2>
       <p class="sub">Ещё не занимают даты. Даты займутся, когда вы переведёте заявку в «В обработке» или «Успешно завершена».</p>
@@ -141,10 +141,14 @@
           <label class="f"><span>Зима</span><input id="banyaWinter" type="number" min="0" step="100"></label>
         </div>
         <div class="f"><span>Зимние месяцы</span><div class="months" id="winterMonths"></div></div>
-        <h3 class="h3">Хивус «Спутник 12»</h3>
+        <h3 class="h3">СВП «Спутник 12»</h3>
         <p class="sub">Пустая цена — «по договорённости». Галочка «за чел.» — цена умножается на число людей (как у переправы).</p>
         <div class="table-wrap"><table class="tbl tbl--edit" id="hivusTbl"><thead><tr><th>Раздел</th><th>Программа</th><th>Цена, ₽</th><th>За чел.</th><th></th></tr></thead><tbody></tbody></table></div>
         <div class="row"><button class="b" id="addHivus">+ Программа</button></div>
+        <h3 class="h3">Багги-туры, ₽ с человека</h3>
+        <p class="sub">«Цена до» — если цена зависит от группы (например, 45 000–55 000). Описание маршрутов на сайте меняется в файле index.html.</p>
+        <div class="table-wrap"><table class="tbl tbl--edit" id="buggyTbl"><thead><tr><th>Тур</th><th>Длительность</th><th>Км</th><th>Цена, ₽</th><th>Цена до, ₽</th><th></th></tr></thead><tbody></tbody></table></div>
+        <div class="row"><button class="b" id="addBuggy">+ Тур</button></div>
         <div class="row"><button class="b b--primary" id="savePricing">Сохранить цены</button></div>
       </div>
 

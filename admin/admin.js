@@ -181,9 +181,9 @@ const loadCalendar = guard(async () => {
   const r = await A.calendar({ from, to });
   const t = todayStr();
   const list = Array.from({ length: days }, (_, i) => P.addDays(from, i));
-  let h = '<thead><tr><th class="unit">Номер</th>' + list.map(d => { const dow = new Date(d + 'T00:00:00').getDay(); return `<th class="${dow === 0 || dow === 6 ? 'we' : ''} ${d === t ? 'today' : ''}">${+d.slice(8)}<br><span style="font-weight:400">${['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'][dow]}</span></th>`; }).join('') + '</tr></thead><tbody>';
+  let h = '<thead><tr><th class="bu">Номер</th>' + list.map(d => { const dow = new Date(d + 'T00:00:00').getDay(); return `<th class="${dow === 0 || dow === 6 ? 'we' : ''} ${d === t ? 'today' : ''}">${+d.slice(8)}<br><span style="font-weight:400">${['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'][dow]}</span></th>`; }).join('') + '</tr></thead><tbody>';
   for (const u of r.units) {
-    h += `<tr><th class="unit">${esc(u.name)}</th>`;
+    h += `<tr><th class="bu">${esc(u.name)}</th>`;
     let prev = null;
     for (const d of list) {
       const v = u.days[d];
@@ -199,18 +199,55 @@ const loadCalendar = guard(async () => {
     }
     h += '</tr>';
   }
+  /* услуги: баня, СВП, багги */
+  if (r.services && r.services.length) {
+    h += `<tr class="grp"><th class="bu">Услуги</th><td colspan="${list.length}"></td></tr>`;
+    for (const sv of r.services) {
+      h += `<tr class="svc"><th class="bu">${esc(sv.name)}</th>`;
+      for (const d of list) {
+        const v = sv.days[d];
+        const cls = [d < t ? 'past' : ''];
+        let label = '', title = 'Свободно — нажмите, чтобы закрыть день для новых заявок';
+        if (v && v.type === 'order') { cls.push('t-order-' + v.status); if (v.blocked) cls.push('is-closed'); label = v.count > 1 ? v.count + ' заяв.' : '№' + v.number; title = `Заявки: ${v.numbers.map(n => '№' + n).join(', ')}${v.blocked ? ' · день закрыт' : ''}`; }
+        if (v && v.type === 'block') { cls.push('t-block'); label = '×'; title = 'День закрыт — нажмите, чтобы открыть'; }
+        h += `<td class="${cls.join(' ')}"><button data-u="${sv.id}" data-d="${d}" data-svc="1" data-t="${v ? v.type : ''}" data-n="${v && v.numbers ? v.numbers.join(',') : ''}" data-closed="${v && (v.blocked || v.type === 'block') ? 1 : 0}" title="${title}">${label}</button></td>`;
+      }
+      h += '</tr>';
+    }
+  }
   $('#board').innerHTML = h + '</tbody>';
+  // на телефоне сразу прокручиваем к сегодняшнему дню
+  const tcell = $('#board thead th.today'), wrap = $('.board-wrap');
+  if (tcell && wrap) wrap.scrollLeft = Math.max(0, tcell.offsetLeft - $('#board th.bu').offsetWidth - 8);
   $('#pending').innerHTML = r.pending.length ? r.pending.map(o => `<button data-n="${o.number}"><span><b>№ ${o.number}</b> · ${esc(o.name)}</span><span>${dru(o.date_from)} – ${dru(o.date_to)} · ${esc(o.unit_name || 'номер не выбран')}</span></button>`).join('') : '<p class="sub">Нет новых заявок на этот месяц.</p>';
   $$('#pending button').forEach(b => b.addEventListener('click', async () => { if (!orders.length) await loadOrders(); openOrder(+b.dataset.n); }));
 });
 $('#board').addEventListener('click', guard(async e => {
   const b = e.target.closest('button[data-d]'); if (!b) return;
   if (b.dataset.d < todayStr()) return;
+  if (b.dataset.svc && b.dataset.t === 'order') return cellMenu(b);
   if (b.dataset.t === 'order') { if (!orders.length) await loadOrders(); return openOrder(+b.dataset.n); }
   if (b.dataset.t === 'avito') return toast('Эта дата занята на Авито. Освободить её можно только там.');
   await A.block({ unit_id: +b.dataset.u, dates: [b.dataset.d], blocked: b.dataset.t !== 'block' });
   loadCalendar();
 }));
+/* меню ячейки услуги: открыть заявку или закрыть/открыть день */
+function cellMenu(b) {
+  const old = $('#cellMenu'); if (old) old.remove();
+  const nums = b.dataset.n.split(',').filter(Boolean), closed = b.dataset.closed === '1';
+  const m = document.createElement('div'); m.id = 'cellMenu'; m.className = 'cellmenu';
+  m.innerHTML = nums.map(n => `<button data-open="${n}">Открыть заявку № ${n}</button>`).join('') + `<button data-toggle>${closed ? 'Открыть день для заявок' : 'Закрыть день для новых заявок'}</button>`;
+  document.body.appendChild(m);
+  const r = b.getBoundingClientRect();
+  m.style.left = Math.min(innerWidth - m.offsetWidth - 8, Math.max(8, r.left)) + 'px';
+  m.style.top = Math.min(innerHeight - m.offsetHeight - 8, r.bottom + 6) + 'px';
+  m.addEventListener('click', guard(async e => {
+    const o = e.target.closest('[data-open]'), tg = e.target.closest('[data-toggle]');
+    if (o) { m.remove(); if (!orders.length) await loadOrders(); openOrder(+o.dataset.open); }
+    if (tg) { m.remove(); await A.block({ unit_id: +b.dataset.u, dates: [b.dataset.d], blocked: !closed }); loadCalendar(); }
+  }));
+  setTimeout(() => document.addEventListener('click', function off(e) { if (!m.contains(e.target)) { m.remove(); document.removeEventListener('click', off); } }), 0);
+}
 $('#calPrev').addEventListener('click', () => { const d = new Date(calMonth[0], calMonth[1] - 1, 1); calMonth = [d.getFullYear(), d.getMonth()]; loadCalendar(); });
 $('#calNext').addEventListener('click', () => { const d = new Date(calMonth[0], calMonth[1] + 1, 1); calMonth = [d.getFullYear(), d.getMonth()]; loadCalendar(); });
 
@@ -236,7 +273,7 @@ $('#tgTest').addEventListener('click', guard(async () => { await A.tgTest(); toa
 
 function renderUnits(list) {
   $('#units').innerHTML = list.map(u => `<div class="unit" data-id="${u.id}">
-    <div class="unit__top"><input class="inp" data-k="name" value="${esc(u.name)}" aria-label="Название номера"><button class="b" data-a="save">Сохранить</button><button class="b" data-a="sync">Обновить из Авито</button><button class="b b--danger" data-a="del">Удалить</button></div>
+    <div class="unit__top"><input class="inp" data-k="name" value="${esc(u.name)}" aria-label="Название номера"><input class="inp" data-k="note" value="${esc(u.note || '')}" placeholder="Подпись, например: крайний, ближе к берегу" aria-label="Подпись номера" style="font-weight:400"><button class="b" data-a="save">Сохранить</button><button class="b" data-a="sync">Обновить из Авито</button><button class="b b--danger" data-a="del">Удалить</button></div>
     <label class="f"><span>Ссылка из Авито (импорт)</span><input data-k="avito_ical_url" value="${esc(u.avito_ical_url)}" placeholder="https://www.avito.ru/…/calendar.ics"></label>
     <div class="f"><span>Ссылка для Авито (экспорт)</span><div class="copy"><input class="inp" readonly value="${esc(u.export_url)}"><button class="b" data-a="copy"><svg><use href="#i-copy"/></svg>Копировать</button></div></div>
     ${u.last_sync_status ? `<div class="unit__status">Последняя синхронизация: ${u.last_sync_at ? dtru(u.last_sync_at) + ' — ' : ''}${esc(u.last_sync_status)}</div>` : ''}
@@ -245,7 +282,7 @@ function renderUnits(list) {
     const id = +el.dataset.id;
     el.addEventListener('click', guard(async e => {
       const a = e.target.closest('[data-a]'); if (!a) return;
-      if (a.dataset.a === 'save') { const r = await A.patchUnit(id, { name: $('[data-k=name]', el).value, avito_ical_url: $('[data-k=avito_ical_url]', el).value.trim() }); renderUnits(r.units); toast('Сохранено'); }
+      if (a.dataset.a === 'save') { const r = await A.patchUnit(id, { name: $('[data-k=name]', el).value, note: $('[data-k=note]', el).value, avito_ical_url: $('[data-k=avito_ical_url]', el).value.trim() }); renderUnits(r.units); toast('Сохранено'); }
       if (a.dataset.a === 'sync') { a.disabled = true; try { const r = await A.syncUnit(id); renderUnits(r.units); toast(r.result.ok ? (r.result.skipped ? 'Ссылка из Авито не указана' : `Готово: занятых дат с Авито — ${r.result.count}`) : 'Ошибка: ' + r.result.error, !r.result.ok); } finally { a.disabled = false; } }
       if (a.dataset.a === 'copy') { const v = $('.copy input', el); navigator.clipboard.writeText(v.value).then(() => toast('Ссылка скопирована'), () => { v.select(); toast('Скопируйте ссылку вручную'); }); }
       if (a.dataset.a === 'del') {
@@ -266,10 +303,15 @@ function renderPricing() {
   $('#hivusTbl tbody').innerHTML = p.hovercraft.map((h, i) => `<tr data-i="${i}"><td><input data-k="group" value="${esc(h.group)}"></td><td><input data-k="name" value="${esc(h.name)}"></td><td><input type="number" min="0" step="500" data-k="price" value="${h.price ?? ''}" placeholder="договорная"></td><td style="text-align:center"><input type="checkbox" data-k="perPerson" ${h.perPerson ? 'checked' : ''} style="width:20px;min-height:20px;accent-color:var(--lotus)"></td><td><button class="b b--icon b--danger" data-hdel="${i}" aria-label="Удалить программу"><svg><use href="#i-x"/></svg></button></td></tr>`).join('');
   $$('#hivusTbl input').forEach(inp => inp.addEventListener('input', () => { const h = p.hovercraft[+inp.closest('tr').dataset.i], k = inp.dataset.k; h[k] = k === 'perPerson' ? inp.checked : k === 'price' ? (inp.value === '' ? null : +inp.value) : inp.value; }));
   $$('#hivusTbl [data-hdel]').forEach(b => b.addEventListener('click', () => { p.hovercraft.splice(+b.dataset.hdel, 1); renderPricing(); }));
+  p.buggy = p.buggy || [];
+  $('#buggyTbl tbody').innerHTML = p.buggy.map((h, i) => `<tr data-i="${i}"><td><input data-k="name" value="${esc(h.name)}"></td><td><input data-k="time" value="${esc(h.time || '')}"></td><td><input data-k="km" value="${esc(h.km || '')}"></td><td><input type="number" min="0" step="500" data-k="price" value="${h.price ?? ''}" placeholder="договорная"></td><td><input type="number" min="0" step="500" data-k="priceTo" value="${h.priceTo ?? ''}" placeholder="—"></td><td><button class="b b--icon b--danger" data-gdel="${i}" aria-label="Удалить тур"><svg><use href="#i-x"/></svg></button></td></tr>`).join('');
+  $$('#buggyTbl input').forEach(inp => inp.addEventListener('input', () => { const h = p.buggy[+inp.closest('tr').dataset.i], k = inp.dataset.k; h[k] = (k === 'price' || k === 'priceTo') ? (inp.value === '' ? null : +inp.value) : inp.value; }));
+  $$('#buggyTbl [data-gdel]').forEach(b => b.addEventListener('click', () => { p.buggy.splice(+b.dataset.gdel, 1); renderPricing(); }));
   $('#banyaSummer').value = p.banya.summer; $('#banyaWinter').value = p.banya.winter;
   $('#winterMonths').innerHTML = MONTHS.map((m, i) => `<label><input type="checkbox" value="${i + 1}" ${p.banya.winterMonths.includes(i + 1) ? 'checked' : ''}>${m}</label>`).join('');
 }
 $('#addPeriod').addEventListener('click', () => { const last = pricingDraft.rooms[pricingDraft.rooms.length - 1]; const from = last ? P.addDays(last.to, 1) : todayStr(); pricingDraft.rooms.push({ from, to: P.addDays(from, 30), price: last ? last.price : 10000, label: 'Новый период' }); renderPricing(); });
+$('#addBuggy').addEventListener('click', () => { pricingDraft.buggy = pricingDraft.buggy || []; pricingDraft.buggy.push({ name: 'Новый тур', time: '', km: '', price: null, priceTo: null }); renderPricing(); });
 $('#addHivus').addEventListener('click', () => { pricingDraft.hovercraft = pricingDraft.hovercraft || []; pricingDraft.hovercraft.push({ group: 'Прогулки', name: 'Новая программа', price: null, perPerson: false }); renderPricing(); });
 $('#savePricing').addEventListener('click', guard(async () => {
   const p = pricingDraft;

@@ -19,7 +19,8 @@
       winter: 3500,               // ₽ в час
       winterMonths: [11, 12, 1, 2, 3, 4]
     },
-    /* хивус «Спутник 12», зима 2027; price: null — «по договорённости»; perPerson — цена за человека */
+    /* СВП (судно на воздушной подушке) «Спутник 12», зима 2027.
+       price: null — «по договорённости»; perPerson — цена за человека */
     hovercraft: [
       { group: 'Прогулки', name: 'Час', price: 13000 },
       { group: 'Прогулки', name: 'Рассветный час', price: 14000 },
@@ -30,24 +31,49 @@
       { group: 'Трансфер Куркут — Хужир', name: 'С заездом на Огой', price: 43000 },
       { group: 'Ещё', name: 'Переправа', price: 1000, perPerson: true },
       { group: 'Ещё', name: 'Организация рыбалки', price: null }
+    ],
+    /* туры на багги по льду Малого Моря, цена за человека; priceFrom — «от» (зависит от группы) */
+    buggy: [
+      { name: 'Долина Курмы', time: '1 час', km: '15 км', price: 4500 },
+      { name: 'Загадки Малого Моря', time: '2 часа', km: '40 км', price: 8000 },
+      { name: 'Места силы', time: '3 часа', km: '80–100 км', price: 12000 },
+      { name: 'Места силы + баня на льду и обед в иглу', time: '4 часа', km: '80–100 км', price: 14000 },
+      { name: 'Ольхонские ворота', time: '2,5–3 часа', km: '', price: 12000 },
+      { name: 'Хобой', time: '6–8 часов', km: '', price: 17000 },
+      { name: 'Лёд и пламя', time: '2 дня, 1 ночь', km: '', price: 45000, priceTo: 55000 }
     ]
   };
-  var OTHER_TOURS = ['Багги', 'Катер', 'Конная прогулка', 'Другое'];
+  var OTHER_TOURS = ['СВП «Хивус»', 'Катер', 'Конная прогулка', 'Другое'];
+  var SVP = 'СВП «Спутник 12»: ';
 
-  /* список экскурсий для формы брони: сначала программы хивуса, потом остальное */
+  /* список экскурсий для формы брони: СВП «Спутник 12», багги, потом остальное */
   function tourOptions(cfg) {
     var h = (cfg && cfg.hovercraft) || DEFAULT_PRICING.hovercraft;
+    var g = (cfg && cfg.buggy) || DEFAULT_PRICING.buggy;
     return h.map(function (x) {
       var low = x.name.charAt(0).toLowerCase() + x.name.slice(1);
-      var label = 'Хивус: ' + (x.group === 'Прогулки' || x.group === 'Ещё' ? low : x.group === 'Переходы' ? 'переход ' + x.name : x.group + ' (' + low + ')');
+      var label = SVP + (x.group === 'Прогулки' || x.group === 'Ещё' ? low : x.group === 'Переходы' ? 'переход ' + x.name : x.group.toLowerCase().replace('куркут', 'Куркут').replace('хужир', 'Хужир') + ' (' + low + ')');
       return { value: label, label: label, price: x.price == null ? null : x.price, perPerson: !!x.perPerson };
-    }).concat(OTHER_TOURS.map(function (n) { return { value: n, label: n, price: null, perPerson: false }; }));
+    }).concat(g.map(function (x) {
+      var label = 'Багги: ' + x.name;
+      return { value: label, label: label, price: x.price == null ? null : x.price, perPerson: true, priceFrom: !!x.priceTo };
+    })).concat(OTHER_TOURS.map(function (n) { return { value: n, label: n, price: null, perPerson: false }; }));
   }
   function tourQuote(cfg, service, people) {
     var o = tourOptions(cfg).filter(function (x) { return x.value === service; })[0];
     if (!o || o.price == null) return null;
     var n = Math.max(1, parseInt(people, 10) || 1);
-    return { total: o.perPerson ? o.price * n : o.price, price: o.price, perPerson: o.perPerson, people: n };
+    return { total: o.perPerson ? o.price * n : o.price, price: o.price, perPerson: o.perPerson, priceFrom: !!o.priceFrom, people: n };
+  }
+
+  /* к какой строке календаря услуг относится заявка */
+  function serviceKey(kind, service) {
+    if (kind === 'banya') return 'banya';
+    if (kind !== 'tour' || !service) return null;
+    if (service.indexOf('СВП «Спутник') === 0) return 'sputnik';
+    if (service.indexOf('СВП «Хивус') === 0) return 'hivus';
+    if (service.indexOf('Багги') === 0) return 'buggy';
+    return null;
   }
 
   function parse(d) {
@@ -119,7 +145,7 @@
   var api = {
     DEFAULT_PRICING: DEFAULT_PRICING,
     parse: parse, fmt: fmt, isDate: isDate, addDays: addDays, diffDays: diffDays, nights: nights,
-    roomRule: roomRule, stayQuote: stayQuote, tourOptions: tourOptions, tourQuote: tourQuote, banyaRate: banyaRate, banyaQuote: banyaQuote, isWinter: isWinter, rub: rub
+    roomRule: roomRule, stayQuote: stayQuote, tourOptions: tourOptions, tourQuote: tourQuote, serviceKey: serviceKey, banyaRate: banyaRate, banyaQuote: banyaQuote, isWinter: isWinter, rub: rub
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.LotosPricing = api;

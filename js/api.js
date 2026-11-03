@@ -27,13 +27,15 @@
   }
 
   /* ---------- демо-хранилище ---------- */
-  var KEY = 'lotos_demo_v2';
+  var KEY = 'lotos_demo_v3';
   var mem = null;
   function todayStr() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
   function seed() {
     var t = todayStr(), a = P.addDays;
     var now = new Date().toISOString();
-    var units = [{ id: 1, name: 'Стандарт', avito_ical_url: '' }, { id: 2, name: 'Семейный', avito_ical_url: '' }, { id: 3, name: 'С кухней', avito_ical_url: '' }, { id: 4, name: 'С террасой', avito_ical_url: '' }];
+    var notes = ['крайний, ближе к берегу', 'второй от края', 'в середине корпуса', 'в середине корпуса', 'второй от края', 'крайний'];
+    var units = notes.map(function (n, i) { return { id: i + 1, name: 'Номер ' + (i + 1), note: n, avito_ical_url: '' }; });
+    var services = [{ id: 101, name: 'Баня на колёсах', skey: 'banya' }, { id: 102, name: 'СВП «Спутник 12»', skey: 'sputnik' }, { id: 103, name: 'СВП «Хивус»', skey: 'hivus' }, { id: 104, name: 'Багги', skey: 'buggy' }];
     function o(n, name, phone, kind, extra, status, final) {
       return Object.assign({ number: n, created_at: now, updated_at: now, name: name, phone: phone, kind: kind, unit_id: null, date_from: null, date_to: null, hours: null, guests: null, service: null, note: '', est_price: null, status: status, final_price: final || null, manager_note: '' }, extra);
     }
@@ -42,17 +44,18 @@
       o(1001, 'Пример: Иванов Иван', '+79000000001', 'stay', { unit_id: 2, date_from: a(t, 6), date_to: a(t, 9), guests: 3, est_price: P.stayQuote(s, a(t, 6), a(t, 9)).total }, 'done', 30000),
       o(1002, 'Пример: Петрова Анна', '+79000000002', 'banya', { date_from: a(t, 4), hours: 3, est_price: P.banyaQuote(s, a(t, 4), 3).total }, 'in_progress'),
       o(1003, 'Пример: Сидоров Олег', '+79000000003', 'stay', { unit_id: 1, date_from: a(t, 12), date_to: a(t, 15), guests: 2, est_price: P.stayQuote(s, a(t, 12), a(t, 15)).total }, 'in_progress'),
-      o(1004, 'Пример: Козлова Мария', '+79000000004', 'tour', { service: 'Хивус: Рассветный час', date_from: a(t, 20), guests: 4, est_price: 14000 }, 'new'),
+      o(1004, 'Пример: Козлова Мария', '+79000000004', 'tour', { service: 'СВП «Спутник 12»: рассветный час', date_from: a(t, 20), guests: 4, est_price: 14000 }, 'new'),
       o(1005, 'Пример: Смирнов Денис', '+79000000005', 'stay', { date_from: a(t, 25), date_to: a(t, 27), guests: 2, est_price: P.stayQuote(s, a(t, 25), a(t, 27)).total }, 'rejected')
     ];
     orders[0].completed_at = now;
-    return { units: units, orders: orders, blocks: {}, external: {}, pricing: s, telegram: {}, nextNumber: 1006 };
+    return { units: units, services: services, orders: orders, blocks: {}, external: {}, pricing: s, telegram: {}, nextNumber: 1006 };
   }
   function load() {
     if (mem) return mem;
     try { mem = JSON.parse(localStorage.getItem(KEY)); } catch (e) { mem = null; }
     if (!mem || !mem.units) mem = seed();
     if (!mem.pricing.hovercraft) mem.pricing.hovercraft = JSON.parse(JSON.stringify(P.DEFAULT_PRICING.hovercraft));
+    if (!mem.pricing.buggy) mem.pricing.buggy = JSON.parse(JSON.stringify(P.DEFAULT_PRICING.buggy));
     return mem;
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(mem)); } catch (e) {} }
@@ -68,6 +71,17 @@
     (db.blocks[unitId] || []).forEach(function (d) { if (d >= from && d < to && !m[d]) m[d] = { type: 'block' }; });
     return m;
   }
+  function svcDays(db, sv, from, to) {
+    var m = {};
+    db.orders.forEach(function (o) {
+      if (BLOCKING.indexOf(o.status) === -1 || !o.date_from || o.date_from < from || o.date_from >= to) return;
+      if (P.serviceKey(o.kind, o.service) !== sv.skey) return;
+      if (m[o.date_from]) { m[o.date_from].count++; m[o.date_from].numbers.push(o.number); }
+      else m[o.date_from] = { type: 'order', number: o.number, numbers: [o.number], count: 1, status: o.status };
+    });
+    (db.blocks[sv.id] || []).forEach(function (d) { if (d >= from && d < to) { if (m[d]) m[d].blocked = true; else m[d] = { type: 'block' }; } });
+    return m;
+  }
   function row(db, o) { var u = db.units.filter(function (x) { return x.id === o.unit_id; })[0]; return Object.assign({}, o, { unit_name: u ? u.name : null, status_ru: STATUS_RU[o.status], kind_ru: KINDS[o.kind] }); }
   function stats(db) {
     var by = { new: 0, in_progress: 0, done: 0, rejected: 0 }, total = 0, month = 0, m = todayStr().slice(0, 7);
@@ -77,17 +91,20 @@
   function demoErr(msg, status) { var e = new Error(msg); e.status = status || 400; return e; }
 
   var demo = {
-    config: async function () { var db = load(); return { units: db.units.map(function (u) { return { id: u.id, name: u.name }; }), pricing: db.pricing, today: todayStr(), tours: P.tourOptions(db.pricing).map(function (t) { return t.value; }) }; },
+    config: async function () { var db = load(); return { units: db.units.map(function (u) { return { id: u.id, name: u.name, note: u.note }; }), pricing: db.pricing, today: todayStr(), tours: P.tourOptions(db.pricing).map(function (t) { return t.value; }) }; },
     availability: async function (from, to) {
       var db = load(), per = {};
       db.units.forEach(function (u) { per[u.id] = Object.keys(busy(db, u.id, from, to)).sort(); });
       var any = db.units.length ? per[db.units[0].id].filter(function (d) { return db.units.every(function (u) { return per[u.id].indexOf(d) !== -1; }); }) : [];
-      return { from: from, to: to, today: todayStr(), units: per, any: any };
+      var svc = {}; (db.services || []).forEach(function (sv) { svc[sv.skey] = (db.blocks[sv.id] || []).filter(function (d) { return d >= from && d < to; }); });
+      return { from: from, to: to, today: todayStr(), units: per, any: any, services: svc };
     },
     createOrder: async function (b) {
       var db = load();
       if (b.consent !== true) throw demoErr('Нужно согласие на обработку персональных данных');
       if (b.unit_id && b.kind === 'stay' && Object.keys(busy(db, +b.unit_id, b.date_from, b.date_to)).length) throw demoErr('Часть выбранных дат уже занята. Выберите другие даты.', 409);
+      var sk = P.serviceKey(b.kind, b.service), sv = (db.services || []).filter(function (x) { return x.skey === sk; })[0];
+      if (sv && b.date_from && (db.blocks[sv.id] || []).indexOf(b.date_from) !== -1) throw demoErr('На эту дату уже всё занято. Выберите другой день или позвоните нам.', 409);
       var est = null;
       if (b.kind === 'stay') { var q = P.stayQuote(db.pricing, b.date_from, b.date_to); est = q && !q.unknownNights ? q.total : null; }
       if (b.kind === 'banya') est = P.banyaQuote(db.pricing, b.date_from, b.hours).total;
@@ -128,10 +145,10 @@
       calendar: async function (q) {
         var db = load();
         var pending = db.orders.filter(function (o) { return o.kind === 'stay' && o.status === 'new' && o.date_to > q.from && o.date_from < q.to; }).map(function (o) { return row(db, o); });
-        return { from: q.from, to: q.to, units: db.units.map(function (u) { return { id: u.id, name: u.name, days: busy(db, u.id, q.from, q.to) }; }), pending: pending };
+        return { from: q.from, to: q.to, units: db.units.map(function (u) { return { id: u.id, name: u.name, days: busy(db, u.id, q.from, q.to) }; }), services: (db.services || []).map(function (sv) { return { id: sv.id, name: sv.name, skey: sv.skey, days: svcDays(db, sv, q.from, q.to) }; }), pending: pending };
       },
       block: async function (b) { var db = load(), arr = db.blocks[b.unit_id] = db.blocks[b.unit_id] || []; (b.dates || [b.date]).forEach(function (d) { var i = arr.indexOf(d); if (b.blocked && i === -1) arr.push(d); if (!b.blocked && i !== -1) arr.splice(i, 1); }); save(); return { ok: true }; },
-      settings: async function () { var db = load(); return { pricing: db.pricing, telegram: { has_token: !!db.telegram.token, token_hint: db.telegram.token ? '…' + db.telegram.token.slice(-6) : '', chat_id: db.telegram.chat_id || '' }, units: db.units.map(function (u) { return { id: u.id, name: u.name, avito_ical_url: u.avito_ical_url || '', last_sync_status: u.avito_ical_url ? 'в демо-режиме синхронизация не выполняется' : '', export_url: location.origin + '/ical/<ссылка появится на сервере>.ics' }; }) }; },
+      settings: async function () { var db = load(); return { pricing: db.pricing, telegram: { has_token: !!db.telegram.token, token_hint: db.telegram.token ? '…' + db.telegram.token.slice(-6) : '', chat_id: db.telegram.chat_id || '' }, units: db.units.map(function (u) { return { id: u.id, name: u.name, note: u.note || '', avito_ical_url: u.avito_ical_url || '', last_sync_status: u.avito_ical_url ? 'в демо-режиме синхронизация не выполняется' : '', export_url: location.origin + '/ical/<ссылка появится на сервере>.ics' }; }) }; },
       savePricing: async function (p) { var db = load(); db.pricing = p; save(); return { pricing: p }; },
       saveTelegram: async function (b) { var db = load(); if (b.token) db.telegram.token = b.token; if ('chat_id' in b) db.telegram.chat_id = b.chat_id; save(); return { ok: true }; },
       tgChats: async function () { throw demoErr('В демо-режиме Telegram не подключается. На сервере эта кнопка найдёт ваш чат.'); },
