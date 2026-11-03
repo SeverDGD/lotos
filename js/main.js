@@ -401,11 +401,15 @@ function renderPrices() {
     $$(`[data-buggy="${x.name}"]`).forEach(el => { el.innerHTML = x.price == null ? 'по договорённости' : `${x.priceTo ? P.rub(x.price).replace(/\s₽$/, '') + '–' + P.rub(x.priceTo) : P.rub(x.price)}<small>с человека</small>`; });
     $$(`[data-buggy-plain="${x.name}"]`).forEach(el => { if (x.price != null) el.textContent = P.rub(x.price); });
   });
-  const hp = $('#hivusPrices'), hv = pricing.hovercraft || [];
-  if (hp && hv.length) {
-    const groups = [];
-    hv.forEach(x => { let g = groups.find(g => g.name === x.group); if (!g) groups.push(g = { name: x.group, items: [] }); g.items.push(x); });
-    hp.innerHTML = groups.map(g => `<div class="menu-list__g"><h4>${g.name}</h4>${g.items.map(x => `<p><span>${x.name}</span><i></i><b>${x.price == null ? 'по договорённости' : P.rub(x.price) + (x.perPerson ? ' <small>с человека</small>' : '')}</b></p>`).join('')}</div>`).join('');
+  /* сравнение цен двух СВП: строки по программам «Спутника», рядом цена «Хивуса» */
+  const hp = $('#hivusPrices'), hv = pricing.hovercraft || [], hv2 = pricing.hovercraft2 || [];
+  if (hp && (hv.length || hv2.length)) {
+    const key = x => x.group + '|' + x.name, rows = [];
+    hv.concat(hv2).forEach(x => { if (!rows.some(r => key(r) === key(x))) rows.push(x); });
+    const cell = (list, r) => { const x = list.find(y => key(y) === key(r)); return !x ? '—' : x.price == null ? 'договорная' : P.rub(x.price) + (x.perPerson ? ' <small>с чел.</small>' : ''); };
+    let last = null, body = '';
+    rows.forEach(r => { if (r.group !== last) { body += `<tr class="svp__g"><th colspan="3">${r.group}</th></tr>`; last = r.group; } body += `<tr><td>${r.name}</td><td>${cell(hv, r)}</td><td>${cell(hv2, r)}</td></tr>`; });
+    $('tbody', hp).innerHTML = body;
   }
   $$('[data-banya-line]').forEach(el => { el.textContent = P.rub(pricing.banya[el.dataset.banyaLine]) + ' / час'; });
 }

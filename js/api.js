@@ -35,7 +35,7 @@
     var now = new Date().toISOString();
     var notes = ['крайний, ближе к берегу', 'второй от края', 'в середине корпуса', 'в середине корпуса', 'второй от края', 'крайний'];
     var units = notes.map(function (n, i) { return { id: i + 1, name: 'Номер ' + (i + 1), note: n, avito_ical_url: '' }; });
-    var services = [{ id: 101, name: 'Баня на колёсах', skey: 'banya' }, { id: 102, name: 'СВП «Спутник 12»', skey: 'sputnik' }, { id: 103, name: 'СВП «Хивус»', skey: 'hivus' }, { id: 104, name: 'Багги', skey: 'buggy' }];
+    var services = [{ id: 101, name: 'Баня на колёсах', skey: 'banya' }, { id: 102, name: 'СВП «Спутник 12»', skey: 'sputnik' }, { id: 103, name: 'СВП «Хивус 10»', skey: 'hivus' }, { id: 104, name: 'Багги', skey: 'buggy' }];
     function o(n, name, phone, kind, extra, status, final) {
       return Object.assign({ number: n, created_at: now, updated_at: now, name: name, phone: phone, kind: kind, unit_id: null, date_from: null, date_to: null, hours: null, guests: null, service: null, note: '', est_price: null, status: status, final_price: final || null, manager_note: '' }, extra);
     }
@@ -55,6 +55,8 @@
     try { mem = JSON.parse(localStorage.getItem(KEY)); } catch (e) { mem = null; }
     if (!mem || !mem.units) mem = seed();
     if (!mem.pricing.hovercraft) mem.pricing.hovercraft = JSON.parse(JSON.stringify(P.DEFAULT_PRICING.hovercraft));
+    if (!mem.pricing.hovercraft2) mem.pricing.hovercraft2 = JSON.parse(JSON.stringify(P.DEFAULT_PRICING.hovercraft2));
+    (mem.services || []).forEach(function (s) { if (s.skey === 'hivus') s.name = 'СВП «Хивус 10»'; });
     if (!mem.pricing.buggy) mem.pricing.buggy = JSON.parse(JSON.stringify(P.DEFAULT_PRICING.buggy));
     return mem;
   }

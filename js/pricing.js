@@ -32,6 +32,18 @@
       { group: 'Ещё', name: 'Переправа', price: 1000, perPerson: true },
       { group: 'Ещё', name: 'Организация рыбалки', price: null }
     ],
+    /* СВП «Хивус 10», зима 2027 — та же сетка программ, цены чуть ниже */
+    hovercraft2: [
+      { group: 'Прогулки', name: 'Час', price: 11000 },
+      { group: 'Прогулки', name: 'Рассветный час', price: 12000 },
+      { group: 'Прогулки', name: 'Тур-день', price: 70000 },
+      { group: 'Переходы', name: 'Листвянка — Хужир', price: 100000 },
+      { group: 'Переходы', name: 'Хужир — Турка', price: 100000 },
+      { group: 'Трансфер Куркут — Хужир', name: 'Прямой', price: 25000 },
+      { group: 'Трансфер Куркут — Хужир', name: 'С заездом на Огой', price: 30000 },
+      { group: 'Ещё', name: 'Переправа', price: 1000, perPerson: true },
+      { group: 'Ещё', name: 'Организация рыбалки', price: null }
+    ],
     /* туры на багги по льду Малого Моря, цена за человека; priceFrom — «от» (зависит от группы) */
     buggy: [
       { name: 'Долина Курмы', time: '1 час', km: '15 км', price: 4500 },
@@ -43,18 +55,22 @@
       { name: 'Лёд и пламя', time: '2 дня, 1 ночь', km: '', price: 45000, priceTo: 55000 }
     ]
   };
-  var OTHER_TOURS = ['СВП «Хивус»', 'Катер', 'Конная прогулка', 'Другое'];
-  var SVP = 'СВП «Спутник 12»: ';
+  var OTHER_TOURS = ['Катер', 'Конная прогулка', 'Другое'];
+  var SVP = 'СВП «Спутник 12»: ', SVP2 = 'СВП «Хивус 10»: ';
 
   /* список экскурсий для формы брони: СВП «Спутник 12», багги, потом остальное */
   function tourOptions(cfg) {
     var h = (cfg && cfg.hovercraft) || DEFAULT_PRICING.hovercraft;
+    var h2 = (cfg && cfg.hovercraft2) || DEFAULT_PRICING.hovercraft2;
     var g = (cfg && cfg.buggy) || DEFAULT_PRICING.buggy;
-    return h.map(function (x) {
-      var low = x.name.charAt(0).toLowerCase() + x.name.slice(1);
-      var label = SVP + (x.group === 'Прогулки' || x.group === 'Ещё' ? low : x.group === 'Переходы' ? 'переход ' + x.name : x.group.toLowerCase().replace('куркут', 'Куркут').replace('хужир', 'Хужир') + ' (' + low + ')');
-      return { value: label, label: label, price: x.price == null ? null : x.price, perPerson: !!x.perPerson };
-    }).concat(g.map(function (x) {
+    var svp = function (prefix) {
+      return function (x) {
+        var low = x.name.charAt(0).toLowerCase() + x.name.slice(1);
+        var label = prefix + (x.group === 'Прогулки' || x.group === 'Ещё' ? low : x.group === 'Переходы' ? 'переход ' + x.name : x.group.toLowerCase().replace('куркут', 'Куркут').replace('хужир', 'Хужир') + ' (' + low + ')');
+        return { value: label, label: label, price: x.price == null ? null : x.price, perPerson: !!x.perPerson };
+      };
+    };
+    return h.map(svp(SVP)).concat(h2.map(svp(SVP2))).concat(g.map(function (x) {
       var label = 'Багги: ' + x.name;
       return { value: label, label: label, price: x.price == null ? null : x.price, perPerson: true, priceFrom: !!x.priceTo };
     })).concat(OTHER_TOURS.map(function (n) { return { value: n, label: n, price: null, perPerson: false }; }));

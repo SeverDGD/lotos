@@ -812,3 +812,29 @@ p{margin:0}
 #activities.is-summer .season button[data-season="summer"] svg{transform:rotate(180deg);color:#E8A35A}
 #sunCanvas{filter:blur(5px)}
 @media (max-width:720px){#sunCanvas{filter:blur(3px)}}
+
+/* ---------- СВП: сравнение цен «Спутник 12» и «Хивус 10» ---------- */
+.svp{background:var(--card);border:1px solid var(--line);overflow-x:auto}
+.svp__tbl{width:100%;border-collapse:collapse;font-size:15px}
+.svp__tbl th,.svp__tbl td{padding:11px 16px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.svp__tbl th:first-child,.svp__tbl td:first-child{text-align:left;white-space:normal}
+.svp__tbl thead th{font-family:var(--f-display);font-weight:400;font-size:20px;line-height:1.15;border-bottom:1px solid var(--line);vertical-align:bottom}
+.svp__tbl thead th:first-child{font-family:var(--f-body);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.svp__tbl thead th small{display:block;font-family:var(--f-body);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.svp__tbl thead th:nth-child(2){color:var(--lotus-2)}
+.svp__tbl td:nth-child(2){font-weight:700}
+.svp__tbl td:nth-child(3){color:var(--ink-2)}
+.svp__tbl td small{font-weight:500;color:var(--muted)}
+.svp__tbl tbody tr:not(.svp__g):hover td{background:var(--lotus-soft)}
+.svp__g th{padding:16px 16px 6px!important;text-align:left!important;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lotus)}
+.svp__tbl tbody tr:not(.svp__g) td{border-bottom:1px dashed rgba(16,39,47,.12)}
+@media (max-width:640px){
+  .svp__tbl{font-size:13px;table-layout:fixed}
+  .svp__tbl th,.svp__tbl td{padding:9px 8px;white-space:normal}
+  .svp__tbl th:first-child,.svp__tbl td:first-child{width:38%;padding-left:12px}
+  .svp__tbl thead th{font-size:15px}
+  .svp__tbl thead th:first-child{font-size:10px;letter-spacing:.08em}
+  .svp__tbl thead th small{font-size:9px;letter-spacing:.04em}
+  .svp__tbl td small{display:block}
+  .svp__g th{padding:14px 12px 4px!important;font-size:11px}
+}
