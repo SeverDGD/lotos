@@ -20,7 +20,7 @@ const desktop = () => innerWidth > 900;
 const allowFx = !reduce && fine && innerWidth > 900;
 
 /* версии фото: имя -> [[файл, ширина], ...] */
-const IMG = {"baikal-panorama":[["baikal-panorama-480.webp",480],["baikal-panorama-960.webp",960],["baikal-panorama-1600.webp",1080]],"banya-in":[["banya-in-480.webp",480],["banya-in-960.webp",600]],"banya-out":[["banya-out-480.webp",480],["banya-out-960.webp",600]],"banya-snow":[["banya-snow-480.webp",480],["banya-snow-960.webp",800]],"bay-hills":[["bay-hills-480.webp",480],["bay-hills-960.webp",600]],"bbq-lounge":[["bbq-lounge-480.webp",480],["bbq-lounge-960.webp",800]],"bike":[["bike-480.webp",480],["bike-960.webp",960]],"buggy-blue":[["buggy-blue-480.webp",480],["buggy-blue-960.webp",747]],"buggy-dusk":[["buggy-dusk-480.webp",480],["buggy-dusk-960.webp",761]],"buggy-group":[["buggy-group-480.webp",480],["buggy-group-960.webp",637]],"buggy-lights":[["buggy-lights-480.webp",480],["buggy-lights-960.webp",488]],"buggy-mirror":[["buggy-mirror-480.webp",480],["buggy-mirror-960.webp",613]],"buggy-red":[["buggy-red-480.webp",480],["buggy-red-960.webp",612]],"buggy-shamanka":[["buggy-shamanka-480.webp",478]],"buggy-snow":[["buggy-snow-480.webp",480],["buggy-snow-960.webp",492]],"buggy-sunset":[["buggy-sunset-480.webp",480],["buggy-sunset-960.webp",492]],"buggy-team":[["buggy-team-480.webp",480],["buggy-team-960.webp",491]],"dome-couple":[["dome-couple-480.webp",480],["dome-couple-960.webp",960],["dome-couple-1600.webp",1600]],"dome-lights":[["dome-lights-480.webp",480],["dome-lights-960.webp",960],["dome-lights-1600.webp",1600]],"dome-outside":[["dome-outside-480.webp",480],["dome-outside-960.webp",960],["dome-outside-1600.webp",1290]],"dome-table":[["dome-table-480.webp",480],["dome-table-960.webp",960],["dome-table-1600.webp",1600]],"hero-dome":[["hero-dome-480.webp",480],["hero-dome-960.webp",960],["hero-dome-1600.webp",1600],["hero-dome-1920.webp",1920]],"horses":[["horses-480.webp",466]],"horses-water":[["horses-water-480.webp",466]],"houses":[["houses-480.webp",480],["houses-960.webp",960],["houses-1600.webp",1280]],"hovercraft-dawn":[["hovercraft-dawn-480.webp",480],["hovercraft-dawn-960.webp",960]],"hovercraft-green":[["hovercraft-green-480.webp",450]],"hovercraft-sunset":[["hovercraft-sunset-480.webp",450]],"ice-buggies":[["ice-buggies-480.webp",480],["ice-buggies-960.webp",484]],"ice-cave":[["ice-cave-480.webp",480],["ice-cave-960.webp",747]],"ice-grotto":[["ice-grotto-480.webp",480],["ice-grotto-960.webp",960]],"olkhon-gates":[["olkhon-gates-480.webp",480],["olkhon-gates-960.webp",720]],"room-bath":[["room-bath-480.webp",480],["room-bath-960.webp",960]],"room-double":[["room-double-480.webp",480],["room-double-960.webp",960]],"room-family":[["room-family-480.webp",480],["room-family-960.webp",960]],"room-fridge":[["room-fridge-480.webp",480],["room-fridge-960.webp",960]],"room-kitchen":[["room-kitchen-480.webp",480],["room-kitchen-960.webp",960],["room-kitchen-1600.webp",1280]],"room-overview":[["room-overview-480.webp",480],["room-overview-960.webp",960]],"room-sofa":[["room-sofa-480.webp",480],["room-sofa-960.webp",960]],"room-window":[["room-window-480.webp",480],["room-window-960.webp",960]],"shore":[["shore-480.webp",480],["shore-960.webp",960],["shore-1600.webp",1280]],"spring":[["spring-480.webp",480],["spring-960.webp",960],["spring-1600.webp",1280]],"sunset-sea":[["sunset-sea-480.webp",480],["sunset-sea-960.webp",800]],"terrace":[["terrace-480.webp",480],["terrace-960.webp",960]],"veranda-view":[["veranda-view-480.webp",480],["veranda-view-960.webp",960]],"winter-ice":[["winter-ice-480.webp",480],["winter-ice-960.webp",960],["winter-ice-1600.webp",1280]]};
+const IMG = {"baikal-panorama":[["baikal-panorama-480.webp",480],["baikal-panorama-960.webp",960],["baikal-panorama-1600.webp",1080]],"banya-in":[["banya-in-480.webp",480],["banya-in-960.webp",600]],"banya-out":[["banya-out-480.webp",480],["banya-out-960.webp",600]],"banya-snow":[["banya-snow-480.webp",480],["banya-snow-960.webp",800]],"bay-hills":[["bay-hills-480.webp",480],["bay-hills-960.webp",600]],"bbq-lounge":[["bbq-lounge-480.webp",480],["bbq-lounge-960.webp",800]],"bike":[["bike-480.webp",480],["bike-960.webp",960]],"buggy-blue":[["buggy-blue-480.webp",480],["buggy-blue-960.webp",747]],"buggy-dusk":[["buggy-dusk-480.webp",480],["buggy-dusk-960.webp",761]],"buggy-group":[["buggy-group-480.webp",480],["buggy-group-960.webp",637]],"buggy-mirror":[["buggy-mirror-480.webp",480],["buggy-mirror-960.webp",613]],"buggy-shamanka":[["buggy-shamanka-480.webp",478]],"buggy-sunset":[["buggy-sunset-480.webp",480],["buggy-sunset-960.webp",492]],"dome-couple":[["dome-couple-480.webp",480],["dome-couple-960.webp",960],["dome-couple-1600.webp",1600]],"dome-lights":[["dome-lights-480.webp",480],["dome-lights-960.webp",960],["dome-lights-1600.webp",1600]],"dome-outside":[["dome-outside-480.webp",480],["dome-outside-960.webp",960],["dome-outside-1600.webp",1290]],"dome-table":[["dome-table-480.webp",480],["dome-table-960.webp",960],["dome-table-1600.webp",1600]],"hero-dome":[["hero-dome-480.webp",480],["hero-dome-960.webp",960],["hero-dome-1600.webp",1600],["hero-dome-1920.webp",1920]],"horses":[["horses-480.webp",466]],"horses-water":[["horses-water-480.webp",466]],"houses":[["houses-480.webp",480],["houses-960.webp",960],["houses-1600.webp",1280]],"hovercraft-dawn":[["hovercraft-dawn-480.webp",480],["hovercraft-dawn-960.webp",960]],"hovercraft-green":[["hovercraft-green-480.webp",450]],"hovercraft-sunset":[["hovercraft-sunset-480.webp",450]],"ice-buggies":[["ice-buggies-480.webp",480],["ice-buggies-960.webp",484]],"ice-grotto":[["ice-grotto-480.webp",480],["ice-grotto-960.webp",960]],"olkhon-gates":[["olkhon-gates-480.webp",480],["olkhon-gates-960.webp",720]],"room-bath":[["room-bath-480.webp",480],["room-bath-960.webp",960]],"room-double":[["room-double-480.webp",480],["room-double-960.webp",960]],"room-kitchen":[["room-kitchen-480.webp",480],["room-kitchen-960.webp",960],["room-kitchen-1600.webp",1280]],"room-overview":[["room-overview-480.webp",480],["room-overview-960.webp",960]],"room-sofa":[["room-sofa-480.webp",480],["room-sofa-960.webp",960]],"room-window":[["room-window-480.webp",480],["room-window-960.webp",960]],"shore":[["shore-480.webp",480],["shore-960.webp",960],["shore-1600.webp",1280]],"spring":[["spring-480.webp",480],["spring-960.webp",960],["spring-1600.webp",1280]],"sunset-sea":[["sunset-sea-480.webp",480],["sunset-sea-960.webp",800]],"terrace":[["terrace-480.webp",480],["terrace-960.webp",960]],"veranda-view":[["veranda-view-480.webp",480],["veranda-view-960.webp",960]]};
 const srcset = n => (IMG[n] || []).map(([f, w]) => `img/${f} ${w}w`).join(', ');
 const midSrc = n => { const v = IMG[n] || []; const m = v.find(([, w]) => w >= 900) || v[v.length - 1]; return m ? 'img/' + m[0] : ''; };
 
@@ -224,20 +224,65 @@ $$('.rail').forEach(r => {
 });
 
 /* ---------- сезоны + снег ---------- */
-const snow = (() => {
-  const cv = $('#snowCanvas'); if (!cv || reduce) return { set() {} };
-  const g = cv.getContext('2d'); let flakes = [], on = false, vis = false, raf = 0, W = 0, H = 0;
-  const size = () => { const d = Math.min(devicePixelRatio || 1, 2); W = cv.offsetWidth; H = cv.offsetHeight; cv.width = W * d; cv.height = H * d; g.setTransform(d, 0, 0, d, 0, 0); const n = Math.round(Math.min(140, W * H / 9000)); flakes = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2.2 + .6, s: Math.random() * .6 + .3, w: Math.random() * Math.PI * 2 })); };
-  const frame = () => {
-    g.clearRect(0, 0, W, H); g.fillStyle = 'rgba(238,243,242,.75)';
-    for (const f of flakes) { f.y += f.s; f.w += .01; f.x += Math.sin(f.w) * .4; if (f.y > H + 5) { f.y = -5; f.x = Math.random() * W; } g.beginPath(); g.arc(f.x, f.y, f.r, 0, 6.3); g.fill(); }
-    raf = on && vis ? requestAnimationFrame(frame) : 0;
-  };
+/* ---------- атмосфера сезона: зимой снег, летом солнце с лучами и бликами ---------- */
+const makeFx = (cv, build, draw) => {
+  if (!cv || reduce) return { set() {} };
+  const g = cv.getContext('2d'); let on = false, vis = false, raf = 0, W = 0, H = 0, st = null;
+  const size = () => { const d = Math.min(devicePixelRatio || 1, 2); W = cv.offsetWidth; H = cv.offsetHeight; cv.width = W * d; cv.height = H * d; g.setTransform(d, 0, 0, d, 0, 0); st = build(W, H); };
+  const frame = t => { g.clearRect(0, 0, W, H); draw(g, W, H, st, t); raf = (on || cv.classList.contains('is-on')) && vis ? requestAnimationFrame(frame) : 0; };
   const run = () => { if (on && vis && !raf) { if (!W) size(); raf = requestAnimationFrame(frame); } };
   new IntersectionObserver(([e]) => { vis = e.isIntersecting; run(); }).observe(cv);
   addEventListener('resize', () => { if (W) size(); });
-  return { set(v) { on = v; cv.classList.toggle('is-on', v); run(); } };
-})();
+  // после затухания (1,2 с) останавливаем отрисовку, чтобы не тратить батарею
+  return { set(v) { on = v; cv.classList.toggle('is-on', v); run(); if (!v) setTimeout(() => { if (!on && raf) { cancelAnimationFrame(raf); raf = 0; } }, 1300); } };
+};
+const snow = makeFx($('#snowCanvas'),
+  (W, H) => Array.from({ length: Math.round(Math.min(140, W * H / 9000)) }, () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 2.2 + .6, s: Math.random() * .6 + .3, w: Math.random() * Math.PI * 2 })),
+  (g, W, H, flakes) => {
+    g.fillStyle = 'rgba(238,243,242,.75)';
+    for (const f of flakes) { f.y += f.s; f.w += .01; f.x += Math.sin(f.w) * .4; if (f.y > H + 5) { f.y = -5; f.x = Math.random() * W; } g.beginPath(); g.arc(f.x, f.y, f.r, 0, 6.3); g.fill(); }
+  });
+const sun = makeFx($('#sunCanvas'),
+  (W, H) => ({
+    rays: Array.from({ length: 9 }, (_, i) => ({ a: 1.8 + i * 0.15 + Math.random() * 0.06, w: 0.03 + Math.random() * 0.05, ph: Math.random() * 6.3, sp: 0.00018 + Math.random() * 0.00025 })),
+    motes: Array.from({ length: Math.round(Math.min(70, W * H / 14000)) }, () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.8 + .5, vy: -(Math.random() * .35 + .08), w: Math.random() * 6.3, ph: Math.random() * 6.3 }))
+  }),
+  (g, W, H, st, t) => {
+    const sx = W * (W < 700 ? .9 : .84), sy = -H * .06, L = Math.hypot(W, H) * 1.1;
+    g.globalCompositeOperation = 'lighter';
+    // свечение солнца
+    const pulse = 1 + Math.sin(t * .0008) * .06;
+    let gr = g.createRadialGradient(sx, sy, 0, sx, sy, Math.min(W, 900) * .55 * pulse);
+    gr.addColorStop(0, 'rgba(255,226,170,.55)'); gr.addColorStop(.25, 'rgba(255,196,120,.22)'); gr.addColorStop(1, 'rgba(255,170,90,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    // лучи
+    for (const r of st.rays) {
+      const a = r.a + Math.sin(t * r.sp + r.ph) * .045, al = .022 + (Math.sin(t * r.sp * 1.7 + r.ph) + 1) * .02;
+      const lg = g.createLinearGradient(sx, sy, sx + Math.cos(a) * L, sy + Math.sin(a) * L);
+      lg.addColorStop(0, `rgba(255,222,160,${al * 2.4})`); lg.addColorStop(.3, `rgba(255,205,140,${al})`); lg.addColorStop(.75, 'rgba(255,190,120,0)');
+      g.fillStyle = lg; g.beginPath(); g.moveTo(sx, sy);
+      g.lineTo(sx + Math.cos(a - r.w) * L, sy + Math.sin(a - r.w) * L);
+      g.lineTo(sx + Math.cos(a + r.w) * L, sy + Math.sin(a + r.w) * L);
+      g.closePath(); g.fill();
+    }
+    // блики-искорки в воздухе
+    for (const m of st.motes) {
+      m.y += m.vy; m.w += .008; m.x += Math.sin(m.w) * .25;
+      if (m.y < -10) { m.y = H + 10; m.x = Math.random() * W; }
+      const tw = .35 + (Math.sin(t * .002 + m.ph) + 1) * .3;
+      g.fillStyle = `rgba(255,214,150,${tw * .18})`; g.beginPath(); g.arc(m.x, m.y, m.r * 3.2, 0, 6.3); g.fill();
+      g.fillStyle = `rgba(255,236,200,${tw})`; g.beginPath(); g.arc(m.x, m.y, m.r * .8, 0, 6.3); g.fill();
+    }
+    // мягкие «блики объектива» по линии от солнца к центру
+    const cx = W * .5, cy = H * .55;
+    [[.35, 46, .06], [.55, 22, .08], [.8, 70, .035]].forEach(([k, rad, al], i) => {
+      const x = sx + (cx - sx) * k + Math.sin(t * .0004 + i) * 6, y = sy + (cy - sy) * k;
+      const fg = g.createRadialGradient(x, y, 0, x, y, rad);
+      fg.addColorStop(0, `rgba(255,220,170,${al})`); fg.addColorStop(.7, `rgba(255,190,140,${al * .5})`); fg.addColorStop(1, 'rgba(255,190,140,0)');
+      g.fillStyle = fg; g.beginPath(); g.arc(x, y, rad, 0, 6.3); g.fill();
+    });
+    g.globalCompositeOperation = 'source-over';
+  });
 const pill = $('.season__pill'), sb = $$('[data-season]');
 const placePill = b => { pill.style.width = b.offsetWidth + 'px'; pill.style.transform = `translateX(${b.offsetLeft}px)`; };
 const setSeason = (season, animate) => {
@@ -250,7 +295,8 @@ const setSeason = (season, animate) => {
     if (on && animate) { a.style.setProperty('--i', k++); void a.offsetWidth; a.classList.add('is-in'); }
   });
   rails.actRail.scrollTo({ left: 0 }); rails.actRail._update();
-  snow.set(season === 'winter');
+  snow.set(season === 'winter'); sun.set(season === 'summer');
+  $('#activities').classList.toggle('is-summer', season === 'summer');
 };
 sb.forEach(b => b.addEventListener('click', () => setSeason(b.dataset.season, true)));
 // сезон по текущему месяцу
@@ -314,27 +360,6 @@ addEventListener('keydown', e => {
   if (open && open.id === 'lightbox' && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) lbGo(lbI + (e.key === 'ArrowRight' ? 1 : -1));
 });
 
-/* ---------- номера ---------- */
-const ROOMS = {
-  1: { t: 'Стандарт', d: 'Светлый номер с двуспальной кроватью и обеденным столом.', p: ['room-double', 'room-overview', 'room-bath', 'room-fridge', 'terrace'], l: ['Тёплые полы', 'Двуспальная кровать', 'Душевая и санузел в номере', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
-  2: { t: 'Семейный', d: 'Кровать и диван, обеденный стол. Удобно для семьи с детьми.', p: ['room-family', 'room-sofa', 'room-window', 'room-bath', 'bbq-lounge'], l: ['Тёплые полы', 'Двуспальная кровать и диван', 'Душевая и санузел в номере', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
-  3: { t: 'С кухней', d: 'Кухонный уголок с микроволновкой, чайником и посудой, шкаф для вещей.', p: ['room-kitchen', 'room-overview', 'room-sofa', 'room-bath', 'veranda-view'], l: ['Тёплые полы', 'Кухонный уголок', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Душевая и санузел', 'Полотенца и средства гигиены', 'Своя зона барбекю'] },
-  4: { t: 'С террасой', d: 'Отдельный вход и своя терраса со столиком, откуда видно Байкал.', p: ['terrace', 'veranda-view', 'room-window', 'room-bath', 'bbq-lounge'], l: ['Тёплые полы', 'Отдельный вход и терраса', 'Своя зона барбекю', 'Душевая и санузел', 'Чайник, микроволновка, посуда', 'Телевизор и Wi‑Fi', 'Полотенца и средства гигиены'] }
-};
-const rmMain = $('#rmMain'), rmThumbs = $('#rmThumbs');
-const showImg = n => { rmMain.style.animation = 'none'; void rmMain.offsetWidth; rmMain.style.animation = ''; rmMain.srcset = srcset(n); rmMain.src = midSrc(n); $$('button', rmThumbs).forEach(b => b.setAttribute('aria-current', b.dataset.src === n)); };
-$$('[data-open-room]').forEach(b => b.addEventListener('click', () => {
-  const id = b.dataset.openRoom, r = ROOMS[id];
-  $('#rmTitle').textContent = r.t; $('#rmText').textContent = r.d;
-  $('#rmList').innerHTML = r.l.map(x => `<li>${x}</li>`).join('');
-  $('#rmPrice').textContent = priceLine();
-  $('#rmBook').dataset.unit = id;
-  rmThumbs.innerHTML = r.p.map(s => `<button data-src="${s}" aria-label="Показать фото"><img src="img/${(IMG[s] || [[s]])[0][0]}" alt="" width="120" height="120" loading="lazy" decoding="async"></button>`).join('');
-  $$('button', rmThumbs).forEach(t => t.addEventListener('click', () => showImg(t.dataset.src)));
-  rmMain.alt = 'Фото номера «' + r.t + '»'; showImg(r.p[0]);
-  openModal($('#roomModal'));
-}));
-
 /* ---------- галерея с листанием ---------- */
 const lbItems = $$('[data-lb]'), lbImg = $('#lbImg'), lb = $('#lightbox');
 let lbI = 0;
@@ -363,10 +388,6 @@ const MONTHS_GEN = ['января', 'февраля', 'марта', 'апрел�
 const dShort = d => { const [, m, dd] = d.split('-'); return `${+dd} ${MONTHS_GEN[+m - 1]}`; };
 const nightsWord = n => n % 10 === 1 && n % 100 !== 11 ? 'ночь' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'ночи' : 'ночей';
 
-function priceLine() {
-  const r = P.roomRule(pricing, today) || pricing.rooms[0];
-  return r ? `Сейчас: ${P.rub(r.price)} за сутки. Цена зависит от дат, точную сумму покажет календарь брони.` : 'Стоимость уточняйте у менеджера.';
-}
 function renderPrices() {
   const grid = $('#pricesGrid'); if (!grid || !pricing.rooms.length) return;
   const fmtRange = r => { const a = dShort(r.from), b = dShort(r.to); return r.from <= today ? `до ${b}` : r.from === r.to ? a : `${a} — ${b}`; };
