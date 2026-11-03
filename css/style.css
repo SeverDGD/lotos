@@ -803,3 +803,12 @@ p{margin:0}
   .pick i{grid-column:1;grid-row:auto;margin-top:6px}
   .pick b{font-size:21px}
 }
+
+/* ---------- лето: тёплый оттенок раздела под солнцем ---------- */
+.sun-tint{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.4s var(--ease);
+  background:radial-gradient(80% 60% at 88% 0%,rgba(255,186,110,.16),transparent 70%),linear-gradient(180deg,rgba(190,120,70,.06),transparent 60%)}
+#activities.is-summer .sun-tint{opacity:1}
+#activities .season button[data-season="summer"] svg{transition:transform 1.2s var(--ease)}
+#activities.is-summer .season button[data-season="summer"] svg{transform:rotate(180deg);color:#E8A35A}
+#sunCanvas{filter:blur(5px)}
+@media (max-width:720px){#sunCanvas{filter:blur(3px)}}
